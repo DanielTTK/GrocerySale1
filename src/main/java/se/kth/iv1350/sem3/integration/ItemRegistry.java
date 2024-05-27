@@ -15,11 +15,6 @@ public class ItemRegistry {
         addAllItems();
     }
 
-    public void removeItemFromRegistry(String id) throws ItemDoesNotExistException {
-        int indexOfItem = returnIndexOfItem(id);
-        items.remove(indexOfItem);
-    }
-
     /**
      * Get the list of items
      * 
@@ -92,6 +87,17 @@ public class ItemRegistry {
         if (id.equals("err111")) {
             throw new ItemRegistryException("Critical database failure");
         }
+    }
+
+    /**
+     * Removes an item from registry.
+     * 
+     * @param id
+     * @throws ItemDoesNotExistException
+     */
+    public void removeItemFromRegistry(String id) throws ItemDoesNotExistException {
+        int indexOfItem = returnIndexOfItem(id);
+        items.remove(indexOfItem);
     }
 
     /**

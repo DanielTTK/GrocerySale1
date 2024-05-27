@@ -1,0 +1,1 @@
+27 maj 2024 17:17:27 | Exception: Critical database failure
