@@ -16,16 +16,6 @@ public class ItemRegistry {
     }
 
     /**
-     * Get the list of items
-     * 
-     * @return the list in item inventory
-     */
-
-    public ItemDTO[] getInventory() {
-        return items.toArray(new ItemDTO[items.size()]);
-    }
-
-    /**
      * gets items from ItemRegistry and returns specific one with specific
      * identifier.
      * 
@@ -48,33 +38,6 @@ public class ItemRegistry {
         }
         checkIfItemExist(item, id);
         return item;
-    }
-
-    /**
-     * Finds index in database by searching for identifier.
-     * 
-     * @param id identifier of item
-     * @return returns index of item
-     * @throws ItemDoesNotExistException
-     */
-    public int returnIndexOfItem(String id) throws ItemDoesNotExistException {
-        ItemDTO[] itemArray = getInventory();
-        ItemDTO item = null;
-        int index = -1;
-
-        for (int i = 0; i < itemArray.length; i++) {
-            if (id == itemArray[i].getID()) {
-                index = i;
-            }
-        }
-
-        /*
-         * if (index == -1) {
-         * throw ItemDoesNotExistException();
-         * }
-         */
-
-        return index;
     }
 
     /**
@@ -101,6 +64,30 @@ public class ItemRegistry {
     }
 
     /**
+     * Finds index in database by searching for identifier.
+     * 
+     * @param id identifier of item
+     * @return returns index of item
+     * @throws ItemDoesNotExistException
+     */
+    public int returnIndexOfItem(String id) throws ItemDoesNotExistException {
+        ItemDTO[] itemArray = getInventory();
+        int index = -1;
+
+        for (int i = 0; i < itemArray.length; i++) {
+            if (id == itemArray[i].getID()) {
+                index = i;
+            }
+        }
+
+        if (index == -1) {
+            throw new ItemDoesNotExistException(id);
+        }
+
+        return index;
+    }
+
+    /**
      * Checks if item is null or not. If null throws exception detailed in throws.
      * 
      * @param item   Item object to check
@@ -111,6 +98,16 @@ public class ItemRegistry {
         if (item == null) {
             throw new ItemDoesNotExistException(itemID);
         }
+    }
+
+    /**
+     * Get the list of items
+     * 
+     * @return the list in item inventory
+     */
+
+    public ItemDTO[] getInventory() {
+        return items.toArray(new ItemDTO[items.size()]);
     }
 
     /**
