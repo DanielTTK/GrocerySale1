@@ -1,6 +1,6 @@
 package se.kth.iv1350.sem3.util;
 
-import se.kth.iv1350.sem3.util.Logger;
+//import se.kth.iv1350.sem3.util.Logger;
 import se.kth.iv1350.sem3.integration.*;
 import se.kth.iv1350.sem3.controller.Controller;
 

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import se.kth.iv1350.sem3.controller.Controller;
 import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
-import se.kth.iv1350.sem3.view.View;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -46,7 +45,5 @@ public class ViewTest {
         instanceToTest.runFakeExecution();
         String printout = printoutBuffer.toString();
         System.out.println(printout);
-        // String expectedOutput = "started";
-        // assertTrue(printout.contains(expectedOutput), "UI did not start correctly.");
     }
 }

@@ -8,12 +8,16 @@ import java.util.List;
 import se.kth.iv1350.sem3.integration.ItemDTO;
 import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
 import se.kth.iv1350.sem3.integration.ItemRegistry;
+import se.kth.iv1350.sem3.integration.SaleRegistry;
+import se.kth.iv1350.sem3.integration.SaleDTO;
+import se.kth.iv1350.sem3.integration.SystemDelegator;
 
 /**
  * a sale made by one customer.
  */
 public class Sale {
     private ItemRegistry itemRegistry;
+    private SaleRegistry saleRegistry;
     private LocalDateTime saleTime;
 
     private double totalCost;
@@ -28,8 +32,9 @@ public class Sale {
     /**
      * Creates a new instance and saves time of sale.
      */
-    public Sale(ItemRegistry itemRegistry) {
-        this.itemRegistry = itemRegistry;
+    public Sale(SystemDelegator delegator) {
+        itemRegistry = delegator.getItemRegistry();
+        saleRegistry = delegator.getSaleRegistry();
         saleTime = LocalDateTime.now();
         // receipt = new Receipt();
     }
@@ -90,7 +95,8 @@ public class Sale {
     }
 
     /**
-     * Processes and "buys" items in basket. Always to be done last in a sale,
+     * Processes and "buys" items in basket, also removes them from inventory.
+     * Always to be done last in a sale,
      * cannot remove items after this for example.
      * 
      * @throws ItemDoesNotExistException
@@ -100,7 +106,6 @@ public class Sale {
      * 
      */
     public void finishSale(double paidAmount) throws ItemDoesNotExistException {
-        String idOfBoughtItem = " ";
         List<ItemDTO> currBasket = getBasket();
         double cost = 0;
 
@@ -113,6 +118,12 @@ public class Sale {
 
         change = paidAmount - cost;
         removeBoughtItemsFromRegistry(currBasket);
+    }
+
+    public void logSaleInAccounting() {
+        SaleDTO saleInstance = new SaleDTO(getSaleTime(), getBasket(), getTotalCost(),
+                getTotalVAT(), getPaidAmount(), getChange());
+        saleRegistry.saveSale(saleInstance);
     }
 
     /**
@@ -137,12 +148,13 @@ public class Sale {
         }
     }
 
-    private void notifyObservers(ItemDTO soldItem) {
-        for (SaleObserver obs : saleObservers) {
-            obs.finishedSale(soldItem);
-        }
-    }
-
+    /*
+     * private void notifyObservers(ItemDTO soldItem) {
+     * for (SaleObserver obs : saleObservers) {
+     * obs.finishedSale(soldItem);
+     * }
+     * }
+     */
     public void notifySpecificSaleObserver(SaleObserver obs) { // add javadocs to these
         saleObservers.add(obs);
     }

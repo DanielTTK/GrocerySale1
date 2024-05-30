@@ -8,8 +8,6 @@ public class ItemRegistry {
 
     /**
      * Creates new instance of ItemRegistry. Also initilizes database.
-     * 
-     * @param contr The controller that is used for all operations.
      */
     public ItemRegistry() {
         addAllItems();

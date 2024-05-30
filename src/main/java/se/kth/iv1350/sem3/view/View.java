@@ -36,25 +36,36 @@ public class View {
 
     /**
      * Simulating a user input from a view screen that calls to all system
-     * operations.
+     * operations. Prints out everything that happens in groups. For example, the
+     * pay method call both acknowledges the payment the customer makes but also
+     * removes items from the item inventory, therefor they are printed close to
+     * eachother.
      * 
      * @throws DoesNotExistException exception if scanned item does not exist.
      */
     public void runFakeExecution() throws ItemDoesNotExistException {
         contr.startSale();
+        System.out.println("Sale has been started.");
 
-        contr.scanItem("abc123", 2); // finds item from contr-->integration and adds the count there
+        contr.scanItem("abc123", 2);
         contr.scanItem("def456", 1);
+        displayAllScannedItemsFromBasket();
 
         contr.pay(200);
-        addItems();
+        System.out.println("Customer pays " + contr.mathFloor(contr.getPaidAmount()) + " SEK");
+        System.out.println("Basket items successfully decreased from inventory.");
+
+        contr.logSaleInAccounting();
+        System.out.println("\nSale succesfully logged into accounting system.");
+
         printRecieptDigital();
     }
 
     /**
-     * adds items and displays it on view for every item added.
+     * Displays all scanned items, better said all items currently within the
+     * basket as output to system.
      */
-    public void addItems() {
+    public void displayAllScannedItemsFromBasket() {
         List<ItemDTO> currBasket = contr.getBasket();
 
         for (int i = 0; i < currBasket.size(); i++) {
@@ -71,11 +82,13 @@ public class View {
                     "\nTotal VAT: " + contr.mathFloor(contr.getTotalVAT()) + "\n\n");
         }
 
-        System.out.print("\n\nCustomer pays " + contr.mathFloor(contr.getPaidAmount()) + " SEK");
-        System.out.print("\n\nBasket items successfully decreased from inventory.");
     }
 
-    public void printRecieptDigital() { // this method should be in reciept
+    /**
+     * Prints a reciept containing all information needed to prove that a sale has
+     * taken place. Details the sale and accounting aswell.
+     */
+    public void printRecieptDigital() {
         List<ItemDTO> currBasket = contr.getBasket();
         System.out.println("\n------------------ Begin receipt ------------------");
         System.out.println("Time of Sale: " + contr.getSaleTime());

@@ -1,12 +1,10 @@
 package se.kth.iv1350.sem3.controller;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import se.kth.iv1350.sem3.integration.ItemDTO;
 import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
-import se.kth.iv1350.sem3.integration.ItemRegistry;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
 import se.kth.iv1350.sem3.model.*;
 
@@ -14,12 +12,12 @@ import se.kth.iv1350.sem3.model.*;
  * Only controller for this project. All calls to model pass through this class.
  */
 public class Controller {
-    private ItemRegistry itemRegistry;
+    private SystemDelegator delegator;
     private List<SaleObserver> saleObservers = new ArrayList<>();
     private Sale sale;
 
     public Controller(SystemDelegator delegator) {
-        this.itemRegistry = delegator.getItemRegistry();
+        this.delegator = delegator;
     }
 
     /**
@@ -27,10 +25,17 @@ public class Controller {
      * during a sale. Ex. regItem.
      */
     public void startSale() {
-        sale = new Sale(itemRegistry);
+        sale = new Sale(delegator);
         sale.notifyAllSaleObservers(saleObservers);
     }
 
+    /**
+     * Scans items and adds them to basket to later be proccessed for sale.
+     * 
+     * @param id       id of particular item to be scanned
+     * @param quantity amount of same items scanned
+     * @throws ItemDoesNotExistException
+     */
     public void scanItem(String id, int quantity) throws ItemDoesNotExistException {
         sale.addItemToBasket(id, quantity);
     }
@@ -55,14 +60,22 @@ public class Controller {
     }
 
     /**
-     * Payment method, payed amount gets inputted here. Named "finishSale" in sale
-     * class.
+     * Processes and "buys" items in basket, also removes them from inventory.
+     * Always to be done last in a sale, should be executed after payment, as a
+     * finalization of sale. Called finishSale in the model.
      * 
      * @param paidAmount
      * @throws ItemDoesNotExistException
      */
     public void pay(double paidAmount) throws ItemDoesNotExistException {
         sale.finishSale(paidAmount);
+    }
+
+    /**
+     * Saves all details of a sale instance into a fake accounting database.
+     */
+    public void logSaleInAccounting() {
+        sale.logSaleInAccounting();
     }
 
     /**
@@ -102,6 +115,11 @@ public class Controller {
         return sale.getPaidAmount();
     }
 
+    /**
+     * Gets calculated change from Sale inside model
+     * 
+     * @return change
+     */
     public double getChange() {
         return sale.getChange();
     }

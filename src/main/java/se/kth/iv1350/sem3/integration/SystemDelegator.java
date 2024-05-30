@@ -5,12 +5,23 @@ package se.kth.iv1350.sem3.integration;
  */
 public class SystemDelegator {
     private ItemRegistry itemRegistry = new ItemRegistry();
-    // private SaleRegistery saleRegistery = new SaleRegistry();
+    private SaleRegistry saleRegistry = new SaleRegistry();
 
     /**
-     * Gets item registery value.
+     * Gets ItemRegistry
+     * 
+     * @return itemRegistry
      */
     public ItemRegistry getItemRegistry() {
         return itemRegistry;
+    }
+
+    /**
+     * Gets SaleRegistry
+     * 
+     * @return saleRegistry
+     */
+    public SaleRegistry getSaleRegistry() {
+        return saleRegistry;
     }
 }

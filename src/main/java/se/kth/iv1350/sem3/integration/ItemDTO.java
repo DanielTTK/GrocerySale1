@@ -8,19 +8,14 @@ public class ItemDTO {
     private final double cost;
     private final double VATmultiplier;
 
-    /*
-     * Creates a new instance representing a particular item.
+    /**
+     * Creates an object representing a particular item.
      * 
      * @param itemIdentifier
-     * 
      * @param name
-     * 
      * @param description
-     * 
      * @param quantity
-     * 
      * @param cost
-     * 
      * @param VATmultiplier
      */
     public ItemDTO(String itemIdentifier, String name, String description, int quantity, double cost,
