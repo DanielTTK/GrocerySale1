@@ -111,7 +111,7 @@ public class Controller {
      * 
      * @return saleTime
      */
-    public LocalTime getSaleTime() {
+    public String getSaleTime() {
         return sale.getSaleTime();
     }
 

@@ -63,7 +63,7 @@ public class View {
             System.out.print("Add " + itemInstance.getQuantity() + " item with identifier " + itemInstance.getID() +
                     "\nItem ID: " + itemInstance.getID() +
                     "\nItem name: " + itemInstance.getName() + " x" + itemInstance.getQuantity() +
-                    "\nItem cost: " + itemInstance.getCost() +
+                    "\nItem(s) cost: " + itemInstance.getCost() +
                     "\nVAT: " + itemInstance.getVAT() * 100 + "%" +
                     "\nItem description: " + itemInstance.getDescription() +
 
@@ -78,20 +78,20 @@ public class View {
     public void printRecieptDigital() { // this method should be in reciept
         List<ItemDTO> currBasket = contr.getBasket();
         System.out.println("\n------------------ Begin receipt ------------------");
-        System.out.println("\nTime of Sale: " + contr.getSaleTime());
+        System.out.println("Time of Sale: " + contr.getSaleTime());
         for (int i = 0; i < currBasket.size(); i++) {
             ItemDTO itemInstance = currBasket.get(i);
             contr.calcTotal(i + 1);
             System.out.println(itemInstance.getName() + "             " +
-                    itemInstance.getQuantity() + " x " + itemInstance.getCost() + "             " +
-                    itemInstance.getQuantity() * itemInstance.getCost() + " SEK");
+                    itemInstance.getQuantity() + " x " + itemInstance.getCost() + "      " +
+                    itemInstance.getCost() + " SEK");
         }
         System.out.println("\nTotal: " + contr.mathFloor(contr.getTotalCost()) + " SEK" +
                 "\nVAT: " + contr.mathFloor(contr.getTotalVAT()) +
 
-                "\n\nPayment: " + contr.getPaidAmount() +
-                "\nChange: " + contr.getChange() +
-                "\n------------------ End receipt ------------------" +
-                "\n\nChange to give the customer: " + contr.getChange());
+                "\n\nPayment: " + contr.mathFloor(contr.getPaidAmount()) +
+                "\nChange: " + contr.mathFloor(contr.getChange()) +
+                "\n------------------- End receipt -------------------" +
+                "\n\nChange to give the customer: " + contr.mathFloor(contr.getChange()));
     }
 }

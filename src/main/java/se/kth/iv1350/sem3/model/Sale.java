@@ -1,6 +1,7 @@
 package se.kth.iv1350.sem3.model;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import se.kth.iv1350.sem3.integration.ItemRegistry;
  */
 public class Sale {
     private ItemRegistry itemRegistry;
-    private LocalTime saleTime;
+    private LocalDateTime saleTime;
 
     private double totalCost;
     private double totalVAT;
@@ -29,7 +30,7 @@ public class Sale {
      */
     public Sale(ItemRegistry itemRegistry) {
         this.itemRegistry = itemRegistry;
-        saleTime = LocalTime.now();
+        saleTime = LocalDateTime.now();
         // receipt = new Receipt();
     }
 
@@ -175,7 +176,15 @@ public class Sale {
         return change;
     }
 
-    public LocalTime getSaleTime() {
-        return saleTime;
+    /**
+     * Gets sale time and formats it to a more user friendly way. Reference is
+     * javase - docs.oracle.com.
+     * 
+     * @return formatted, current time taken from machine.
+     */
+    public String getSaleTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        return formatter.format(saleTime);
     }
 }
