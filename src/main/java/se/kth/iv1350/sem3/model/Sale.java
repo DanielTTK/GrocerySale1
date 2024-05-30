@@ -107,7 +107,7 @@ public class Sale {
 
         for (int i = 0; i < currBasket.size(); i++) {
             cost += currBasket.get(i).getCost();
-            itemRegistry.removeItemFromRegistry(idOfBoughtItem);
+            // itemRegistry.removeItemFromRegistry(idOfBoughtItem);
         }
 
         change = paidAmount - cost;

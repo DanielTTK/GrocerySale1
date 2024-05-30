@@ -48,6 +48,7 @@ public class View {
 
         contr.pay(200);
         addItems();
+        printRecieptDigital();
     }
 
     /**
@@ -76,17 +77,21 @@ public class View {
 
     public void printRecieptDigital() { // this method should be in reciept
         List<ItemDTO> currBasket = contr.getBasket();
-        System.out.println("------------------ Begin receipt ------------------");
+        System.out.println("\n------------------ Begin receipt ------------------");
+        System.out.println("\nTime of Sale: " + contr.getSaleTime());
         for (int i = 0; i < currBasket.size(); i++) {
-            System.out.println("Time of Sale: " + contr.getSaleTime());
             ItemDTO itemInstance = currBasket.get(i);
             contr.calcTotal(i + 1);
-            System.out.print(itemInstance.getName() + "             " +
+            System.out.println(itemInstance.getName() + "             " +
                     itemInstance.getQuantity() + " x " + itemInstance.getCost() + "             " +
                     itemInstance.getQuantity() * itemInstance.getCost() + " SEK");
         }
         System.out.println("\nTotal: " + contr.mathFloor(contr.getTotalCost()) + " SEK" +
                 "\nVAT: " + contr.mathFloor(contr.getTotalVAT()) +
-                "\n------------------ End receipt ------------------");
+
+                "\n\nPayment: " + contr.getPaidAmount() +
+                "\nChange: " + contr.getChange() +
+                "\n------------------ End receipt ------------------" +
+                "\n\nChange to give the customer: " + contr.getChange());
     }
 }
