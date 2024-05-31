@@ -12,7 +12,7 @@ import java.io.PrintStream;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-//import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ViewTest {
     private View instanceToTest;
@@ -45,5 +45,7 @@ public class ViewTest {
         instanceToTest.runFakeExecution();
         String printout = printoutBuffer.toString();
         System.out.println(printout);
+        String expectedOutput = "Sale has been started.";
+        assertTrue(printout.contains(expectedOutput), "UI did not start correctly.");
     }
 }

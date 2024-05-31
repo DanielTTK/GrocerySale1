@@ -47,7 +47,8 @@ public class View {
         contr.startSale();
         System.out.println("Sale has been started.");
 
-        contr.scanItem("abc123", 2);
+        contr.scanItem("abc123", 1);
+        contr.scanItem("abc123", 1);
         contr.scanItem("def456", 1);
         displayAllScannedItemsFromBasket();
 
@@ -58,7 +59,7 @@ public class View {
         contr.logSaleInAccounting();
         System.out.println("\nSale succesfully logged into accounting system.");
 
-        printRecieptDigital();
+        System.out.print(contr.createReciept());
     }
 
     /**
@@ -81,30 +82,5 @@ public class View {
                     "\n\nTotal cost (incl VAT): " + contr.mathFloor(contr.getTotalCost()) + " SEK" +
                     "\nTotal VAT: " + contr.mathFloor(contr.getTotalVAT()) + "\n\n");
         }
-
-    }
-
-    /**
-     * Prints a reciept containing all information needed to prove that a sale has
-     * taken place. Details the sale and accounting aswell.
-     */
-    public void printRecieptDigital() {
-        List<ItemDTO> currBasket = contr.getBasket();
-        System.out.println("\n------------------ Begin receipt ------------------");
-        System.out.println("Time of Sale: " + contr.getSaleTime());
-        for (int i = 0; i < currBasket.size(); i++) {
-            ItemDTO itemInstance = currBasket.get(i);
-            contr.calcTotal(i + 1);
-            System.out.println(itemInstance.getName() + "             " +
-                    itemInstance.getQuantity() + " x " + itemInstance.getCost() + "      " +
-                    itemInstance.getCost() + " SEK");
-        }
-        System.out.println("\nTotal: " + contr.mathFloor(contr.getTotalCost()) + " SEK" +
-                "\nVAT: " + contr.mathFloor(contr.getTotalVAT()) +
-
-                "\n\nPayment: " + contr.mathFloor(contr.getPaidAmount()) +
-                "\nChange: " + contr.mathFloor(contr.getChange()) +
-                "\n------------------- End receipt -------------------" +
-                "\n\nChange to give the customer: " + contr.mathFloor(contr.getChange()));
     }
 }

@@ -23,6 +23,10 @@ public class Logger {
         ex.printStackTrace();
     }
 
+    public void logMessage(String msg) {
+        logPrint.println(msg);
+    }
+
     private String time() {
         LocalDateTime time = LocalDateTime.now();
         DateTimeFormatter format = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);

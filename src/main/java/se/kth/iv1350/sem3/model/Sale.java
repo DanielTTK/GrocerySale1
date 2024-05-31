@@ -30,13 +30,12 @@ public class Sale {
     private List<ItemDTO> basket = new ArrayList<>();
 
     /**
-     * Creates a new instance and saves time of sale.
+     * Creates a new instance and saves current time of sale.
      */
     public Sale(SystemDelegator delegator) {
         itemRegistry = delegator.getItemRegistry();
         saleRegistry = delegator.getSaleRegistry();
         saleTime = LocalDateTime.now();
-        // receipt = new Receipt();
     }
 
     /**
@@ -58,40 +57,42 @@ public class Sale {
             }
         }
         if (!itemExists) {
-            basket.add(itemAddedQuantity(itemRegistry.returnItem(id), quantity));
+            basket.add(itemRegistry.returnItem(id));
         }
     }
 
     /**
-     * Adds amount to itemDTO quantity value. Changes item based on quantity
+     * Adds <code>quantity</code> to itemDTO quantity value. Changes item details
+     * based on quantity
      * 
      * @param item     item to add to
      * @param quantity amount of items to add
      * @return a copy of <code>item</code> but with <code>quantity</code> added
      *         quantity
      */
-    ItemDTO itemAddedQuantity(ItemDTO item, int quantity) {
+    private ItemDTO itemAddedQuantity(ItemDTO item, int quantity) { // should be in itemRegistry class?
+        int resultingQuantity = (item.getQuantity() + quantity);
         ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
-                quantity, item.getCost() * quantity, item.getVAT());
+                resultingQuantity, item.getCost() * resultingQuantity, item.getVAT());
         return newItem;
     }
 
     /**
-     * Calculates total vat and amount which later can be gotten.
+     * Calculates total vat and cost. Allows for "breakpoints". You write as
+     * parameter how many items you go through.
      * 
      * @param numberOfItemsToCalc How many items the method should iterate through
      *                            to calculate total vat and amount
      */
     public void calcTotal(int numberOfItemsToCalc) {
         totalCost = 0;
-        totalVAT = 0;
         List<ItemDTO> currBasket = getBasket();
         for (int i = 0; i < numberOfItemsToCalc; i++) {
             ItemDTO itemInstance = currBasket.get(i);
-
-            totalVAT += itemInstance.getCost() * itemInstance.getVAT();
-            totalCost += itemInstance.getCost() + totalVAT;
+            totalCost += itemInstance.getCost();
         }
+        totalVAT = totalCost * 0.06;
+        totalCost += totalVAT;
     }
 
     /**
@@ -113,13 +114,15 @@ public class Sale {
 
         for (int i = 0; i < currBasket.size(); i++) {
             cost += currBasket.get(i).getCost();
-            // itemRegistry.removeItemFromRegistry(idOfBoughtItem);
         }
 
         change = paidAmount - cost;
         removeBoughtItemsFromRegistry(currBasket);
     }
 
+    /**
+     * Logs details about sale instance in external database.
+     */
     public void logSaleInAccounting() {
         SaleDTO saleInstance = new SaleDTO(getSaleTime(), getBasket(), getTotalCost(),
                 getTotalVAT(), getPaidAmount(), getChange());
@@ -144,7 +147,12 @@ public class Sale {
      */
     private void removeBoughtItemsFromRegistry(List<ItemDTO> currentBasket) throws ItemDoesNotExistException {
         for (int i = 0; i < currentBasket.size(); i++) {
-            itemRegistry.removeItemFromRegistry(currentBasket.get(i).getID());
+            ItemDTO itemInstance = currentBasket.get(i);
+            if (itemInstance.getQuantity() > 1) {
+                itemAddedQuantity(itemInstance, -1);
+            } else {
+                itemRegistry.removeItemFromRegistry(currentBasket.get(i).getID());
+            }
         }
     }
 

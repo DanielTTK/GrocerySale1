@@ -1,1 +1,4 @@
-27 maj 2024 17:17:27 | Exception: Critical database failure
+se.kth.iv1350.sem3.integration.ItemDTO@442675e1
+[se.kth.iv1350.sem3.integration.ItemDTO@442675e1]
+se.kth.iv1350.sem3.integration.ItemDTO@6166e06f
+[se.kth.iv1350.sem3.integration.ItemDTO@6166e06f]

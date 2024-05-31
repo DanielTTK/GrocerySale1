@@ -56,7 +56,9 @@ public class ItemRegistry {
      * @param id
      * @throws ItemDoesNotExistException
      */
-    public void removeItemFromRegistry(String id) throws ItemDoesNotExistException {
+    public void removeItemFromRegistry(String id) throws ItemDoesNotExistException { // need to adjust it to remove from
+                                                                                     // quantity! If q = 0, remove it
+                                                                                     // alltogether
         int indexOfItem = returnIndexOfItem(id);
         items.remove(indexOfItem);
     }
@@ -86,7 +88,7 @@ public class ItemRegistry {
     }
 
     /**
-     * Checks if item is null or not. If null throws exception detailed in throws.
+     * Checks if item exists.
      * 
      * @param item   Item object to check
      * @param itemID Searched id

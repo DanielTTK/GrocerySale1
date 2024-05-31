@@ -11,18 +11,15 @@ import java.io.PrintStream;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-//import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MainTest {
-    // private Main instanceToTest;
     private ByteArrayOutputStream printoutBuffer;
     private PrintStream originalSysOut;
 
     @BeforeEach
-    public void setUp() {
-        // instanceToTest = new Main();
+    public void renewSetUp() {
 
-        // Change out old out with new.
         printoutBuffer = new ByteArrayOutputStream();
         PrintStream inMemSysOut = new PrintStream(printoutBuffer);
         originalSysOut = System.out;
@@ -31,8 +28,6 @@ public class MainTest {
 
     @AfterEach
     public void tearDown() {
-        // instanceToTest = null;
-
         printoutBuffer = null;
         System.setOut(originalSysOut);
     }
@@ -41,8 +36,8 @@ public class MainTest {
     public void testUIHasStarted() throws Exception {
         String[] args = null;
         Main.main(args);
-        // String printout = printoutBuffer.toString();
-        // String expectedOutput = "started";
-        // assertTrue(printout.contains(expectedOutput), "UI did not start correctly.");
+        String printout = printoutBuffer.toString();
+        String expectedOutput = "Sale has been started.";
+        assertTrue(printout.contains(expectedOutput), "UI did not start correctly.");
     }
 }

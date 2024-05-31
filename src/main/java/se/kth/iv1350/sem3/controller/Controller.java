@@ -15,6 +15,7 @@ public class Controller {
     private SystemDelegator delegator;
     private List<SaleObserver> saleObservers = new ArrayList<>();
     private Sale sale;
+    private Reciept reciept;
 
     public Controller(SystemDelegator delegator) {
         this.delegator = delegator;
@@ -26,6 +27,7 @@ public class Controller {
      */
     public void startSale() {
         sale = new Sale(delegator);
+        reciept = new Reciept(sale);
         sale.notifyAllSaleObservers(saleObservers);
     }
 
@@ -51,9 +53,10 @@ public class Controller {
     }
 
     /**
-     * made for view to be able to view a method from Sale inside model.
+     * Calcs total vat and cost. Allows for "breakpoints". You write as parameter
+     * how many items you wanna go through
      * 
-     * @param iteration
+     * @param iteration how many lines within basket it should go through.
      */
     public void calcTotal(int iteration) {
         sale.calcTotal(iteration);
@@ -69,6 +72,14 @@ public class Controller {
      */
     public void pay(double paidAmount) throws ItemDoesNotExistException {
         sale.finishSale(paidAmount);
+    }
+
+    /**
+     * Prints a reciept containing all information needed to prove that a sale has
+     * taken place. Details the sale and accounting aswell.
+     */
+    public String createReciept() {
+        return reciept.createRecieptDigital();
     }
 
     /**
