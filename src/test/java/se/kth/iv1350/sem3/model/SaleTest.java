@@ -20,7 +20,6 @@ public class SaleTest {
     private ByteArrayOutputStream printoutBuffer;
     private PrintStream originalSysOut;
     private Sale sale;
-    // private Logger logger;
     private SystemDelegator delegator;
     private ItemRegistry itemRegistry;
     private SaleRegistry saleRegistry;
@@ -31,7 +30,6 @@ public class SaleTest {
         itemRegistry = delegator.getItemRegistry();
         saleRegistry = delegator.getSaleRegistry();
         sale = new Sale(delegator);
-        // logger = new Logger();
         printoutBuffer = new ByteArrayOutputStream();
         PrintStream inMemSysOut = new PrintStream(printoutBuffer);
         originalSysOut = System.out;
@@ -42,7 +40,6 @@ public class SaleTest {
     public void tearDown() {
         delegator = null;
         sale = null;
-        // logger = null;
         printoutBuffer = null;
         System.setOut(originalSysOut);
     }
@@ -56,9 +53,6 @@ public class SaleTest {
 
         ItemDTO item1 = sale.getBasket().get(0);
         ItemDTO item2 = sale.getBasket().get(1);
-
-        // logger.logMessage(basket.get(0).toString());
-        // logger.logMessage(string);
 
         assertTrue(item1.getQuantity() == 3 && item1.getCost() == sale.mathRound(29.9 * 3),
                 "Item1 could not be added to basket! Cost: " + item1.getCost() + " Quan. = " + item1.getQuantity());
@@ -134,5 +128,6 @@ public class SaleTest {
     @Test
     public void testRemoveBoughtItemsFromRegistry() throws ItemDoesNotExistException {
         // Private class ignored! Tested in testFinishSale method above.
+        // Implemented in FinishSale method.
     }
 }
