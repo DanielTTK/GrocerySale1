@@ -26,7 +26,8 @@ public class Reciept {
             sale.calcTotal(i + 1);
             write(reciept,
                     itemInstance.getName() + "             " +
-                            itemInstance.getQuantity() + " x " + (itemInstance.getCost() / itemInstance.getQuantity())
+                            itemInstance.getQuantity() + " x "
+                            + sale.mathRound(itemInstance.getCost() / itemInstance.getQuantity())
                             + "      " +
                             itemInstance.getCost() + " SEK");
         }

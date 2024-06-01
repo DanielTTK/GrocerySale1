@@ -39,7 +39,8 @@ public class Sale {
     }
 
     /**
-     * Adds item to be proccessed for sale. Execs this when scanning items
+     * Adds item to be proccessed for sale into basket. Scan item function, based on
+     * identifier and eventually inputted quantity.
      * 
      * @param id
      * @param quantity
@@ -48,32 +49,54 @@ public class Sale {
                                                                                             // should keep propegating
                                                                                             // upwards or if you want to
                                                                                             // catch it here. Why?
-        boolean itemExists = false;
+        if (basket.size() == 0) {
+            basket.add(itemSetQuantity(itemRegistry.returnItem(id), quantity));
+            return;
+        }
+
         for (int i = 0; i < basket.size(); i++) {
             ItemDTO itemInstance = basket.get(i);
             if (id == itemInstance.getID()) {
                 basket.set(i, itemAddedQuantity(itemInstance, quantity));
-                itemExists = true;
+                return;
             }
         }
-        if (!itemExists) {
-            basket.add(itemRegistry.returnItem(id));
-        }
+
+        basket.add(itemSetQuantity(itemRegistry.returnItem(id), quantity));
     }
 
     /**
-     * Adds <code>quantity</code> to itemDTO quantity value. Changes item details
-     * based on quantity
+     * Adds <code>quantity</code> to itemDTO quantity value.
      * 
      * @param item     item to add to
      * @param quantity amount of items to add
      * @return a copy of <code>item</code> but with <code>quantity</code> added
      *         quantity
      */
-    private ItemDTO itemAddedQuantity(ItemDTO item, int quantity) { // should be in itemRegistry class?
+    private ItemDTO itemAddedQuantity(ItemDTO item, int quantity) throws ItemDoesNotExistException { // should be in
+                                                                                                     // itemRegistry
+                                                                                                     // class?
         int resultingQuantity = (item.getQuantity() + quantity);
+        double itemCostToAdd = (itemRegistry.returnItem(item.getID()).getCost() * quantity);
+
         ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
-                resultingQuantity, item.getCost() * resultingQuantity, item.getVAT());
+                resultingQuantity, mathRound(item.getCost() + itemCostToAdd), item.getVAT());
+        return newItem;
+    }
+
+    /**
+     * Sets <code>quantity</code> to itemDTO quantity value.
+     * 
+     * @param item     item to add to
+     * @param quantity amount of items to add
+     * @return a copy of <code>item</code> but with <code>quantity</code> added
+     *         quantity
+     */
+    private ItemDTO itemSetQuantity(ItemDTO item, int quantity) throws ItemDoesNotExistException {
+        double itemCostToAdd = (itemRegistry.returnItem(item.getID()).getCost() * (quantity - 1));
+
+        ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
+                quantity, mathRound(item.getCost() + itemCostToAdd), item.getVAT());
         return newItem;
     }
 
@@ -137,6 +160,26 @@ public class Sale {
      */
     public double mathFloor(double number) {
         return Math.floor(number * 100) / 100;
+    }
+
+    /**
+     * Ceiling doubles with 1 significant decimal
+     * 
+     * @param number number to be floored
+     * @return returns floored number
+     */
+    public double mathCeiling(double number) {
+        return Math.ceil(number / 10);
+    }
+
+    /**
+     * Rounds doubles with 1 significant decimal
+     * 
+     * @param number number to be floored
+     * @return returns floored number
+     */
+    public double mathRound(double number) {
+        return Math.round(number * 10.0) / 10.0;
     }
 
     /**

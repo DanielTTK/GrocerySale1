@@ -11,10 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import se.kth.iv1350.sem3.integration.ItemDTO;
 import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.integration.ItemRegistry;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
 import se.kth.iv1350.sem3.util.Logger;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 public class SaleTest {
@@ -23,10 +24,13 @@ public class SaleTest {
     private Sale sale;
     private Logger logger;
     private SystemDelegator delegator;
+    private ItemRegistry itemRegistry;
+    // private SaleRegistry saleRegistry;
 
     @BeforeEach
     public void renewSetUp() throws IOException {
         delegator = new SystemDelegator();
+        itemRegistry = delegator.getItemRegistry();
         sale = new Sale(delegator);
         logger = new Logger();
         printoutBuffer = new ByteArrayOutputStream();
@@ -45,11 +49,6 @@ public class SaleTest {
     }
 
     @Test
-    public void testCalcTotal() {
-        sale.calcTotal(3);
-    }
-
-    @Test
     public void testAddItemToBasket() throws ItemDoesNotExistException {
         sale.addItemToBasket("abc123", 1);
         // sale.addItemToBasket("abc123", 1);
@@ -61,6 +60,42 @@ public class SaleTest {
         logger.logMessage(string);
 
         assertTrue(sale.getBasket().get(0).getQuantity() == 1, "Item could not be added to basket!");
+    }
+
+    @Test
+    public void testCalcTotal() throws ItemDoesNotExistException {
+        sale.addItemToBasket("abc123", 2);
+        sale.addItemToBasket("def456", 1);
+
+        sale.calcTotal(1);
+        double total = sale.getTotalCost();
+        double abc123cost = 29.90 * 1.06;
+
+        assertTrue((total == abc123cost), "Failed to calc total. Total expected: " + total);
+    }
+
+    @Test
+    public void testFinishSale() throws ItemDoesNotExistException {
+        sale.addItemToBasket("abc123", 1);
+        sale.addItemToBasket("abc123", 1);
+        sale.addItemToBasket("def456", 1);
+
+        sale.calcTotal(2);
+
+        ItemDTO item1 = itemRegistry.returnItem("abc123");
+        ItemDTO item2 = itemRegistry.returnItem("def456");
+
+        double totalCost = (item1.getCost() * 2) + item2.getCost();
+        double expectedChange = 200 - totalCost;
+
+        sale.finishSale(200);
+
+        assertTrue(sale.getChange() == expectedChange,
+                "Incorrected change! Change expected: " + sale.getChange() + " Change found: "
+                        + expectedChange);
+        assertTrue(item1.getQuantity() == 1, "The item did not decrease!");
+        assertTrue(itemRegistry.getInventory().length < 2, "The item did not decrease! Length: " + itemRegistry
+                .getInventory().length);
     }
 
     @Test
@@ -78,6 +113,6 @@ public class SaleTest {
 
     @Test
     public void testRemoveBoughtItemsFromRegistry() throws ItemDoesNotExistException {
-        // Private class ignored!
+        // Private class ignored! Tested in testFinishSale method above.
     }
 }

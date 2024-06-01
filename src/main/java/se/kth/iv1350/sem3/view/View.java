@@ -47,7 +47,7 @@ public class View {
         contr.startSale();
         System.out.println("Sale has been started.");
 
-        contr.scanItem("abc123", 1);
+        contr.scanItem("abc123", 2);
         contr.scanItem("abc123", 1);
         contr.scanItem("def456", 1);
         displayAllScannedItemsFromBasket();
