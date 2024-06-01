@@ -43,6 +43,12 @@ public class Reciept {
         return reciept.toString();
     }
 
+    /**
+     * functions exactly like println. Adds a linebreak at the end of any message.
+     * 
+     * @param reciept
+     * @param string
+     */
     private void write(StringBuilder reciept, String string) {
         reciept.append(string);
         reciept.append("\n");
