@@ -163,16 +163,6 @@ public class Sale {
     }
 
     /**
-     * Ceiling doubles with 1 significant decimal
-     * 
-     * @param number number to be floored
-     * @return returns floored number
-     */
-    public double mathCeiling(double number) {
-        return Math.ceil(number / 10);
-    }
-
-    /**
      * Rounds doubles with 1 significant decimal
      * 
      * @param number number to be floored
@@ -191,8 +181,11 @@ public class Sale {
     private void removeBoughtItemsFromRegistry(List<ItemDTO> currentBasket) throws ItemDoesNotExistException {
         for (int i = 0; i < currentBasket.size(); i++) {
             ItemDTO itemInstance = currentBasket.get(i);
-            if (itemInstance.getQuantity() > 1) {
-                itemAddedQuantity(itemInstance, -1);
+            ItemDTO itemToSubtract = itemRegistry.returnItem(itemInstance.getID());
+            if (itemInstance.getQuantity() > itemToSubtract.getQuantity()) {
+                // Not enough items in inventory exception
+            } else if (itemToSubtract.getQuantity() - itemInstance.getQuantity() > 0) {
+                itemRegistry.decreaseItemQuanityFromRegistry(itemInstance.getID(), itemInstance.getQuantity());
             } else {
                 itemRegistry.removeItemFromRegistry(currentBasket.get(i).getID());
             }

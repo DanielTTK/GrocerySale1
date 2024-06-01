@@ -16,4 +16,8 @@ public class SaleRegistry {
     public void saveSale(SaleDTO currSale) {
         accounting.add(currSale);
     }
+
+    public List<SaleDTO> getSaleRegistry() {
+        return accounting;
+    }
 }

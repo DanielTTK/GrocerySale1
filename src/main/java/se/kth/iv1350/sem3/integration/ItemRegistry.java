@@ -50,6 +50,18 @@ public class ItemRegistry {
         }
     }
 
+    public void decreaseItemQuanityFromRegistry(String id, int quantity) throws ItemDoesNotExistException { // copied
+                                                                                                            // code?
+        ItemDTO item = returnItem(id);
+        int resultingQuantity = item.getQuantity() - quantity;
+        double itemCostToDecrease = item.getCost() - item.getCost() * quantity;
+
+        ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
+                resultingQuantity, item.getCost() - itemCostToDecrease, item.getVAT());
+
+        items.set(returnIndexOfItem(id), newItem);
+    }
+
     /**
      * Removes an item from registry.
      * 
@@ -59,8 +71,13 @@ public class ItemRegistry {
     public void removeItemFromRegistry(String id) throws ItemDoesNotExistException { // need to adjust it to remove from
                                                                                      // quantity! If q = 0, remove it
                                                                                      // alltogether
-        int indexOfItem = returnIndexOfItem(id);
-        items.remove(indexOfItem);
+        ItemDTO item = returnItem(id);
+
+        if (item.getQuantity() == 1) {
+            int indexOfItem = returnIndexOfItem(id);
+            items.remove(indexOfItem);
+        }
+
     }
 
     /**
@@ -101,13 +118,23 @@ public class ItemRegistry {
     }
 
     /**
-     * Get the list of items
+     * Get the list of items as array
      * 
      * @return the list in item inventory
      */
 
     public ItemDTO[] getInventory() {
         return items.toArray(new ItemDTO[items.size()]);
+    }
+
+    /**
+     * Get the list of items as arrayList
+     * 
+     * @return the list in item inventory
+     */
+
+    public List<ItemDTO> getInventoryArrayList() {
+        return items;
     }
 
     /**

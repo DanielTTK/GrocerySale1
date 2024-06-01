@@ -30,28 +30,28 @@ public class SaleDTO {
         this.change = change;
     }
 
-    public String getObjectSaleTime() {
+    public String getSaleSaleTime() {
         return saleTime;
     }
 
-    public double getObjectTotalCost() { // adress in report that these don't need to be public as they are not used,
-                                         // discuss it
+    public double getSaleTotalCost() { // adress in report that these don't need to be public as they are not used,
+                                       // discuss it
         return totalCost;
     }
 
-    public double getObjectTotalVAT() {
+    public double getSaleTotalVAT() {
         return totalVAT;
     }
 
-    public double getObjectPaidAmount() {
+    public double getSalePaidAmount() {
         return paidAmount;
     }
 
-    public double getObjectChange() {
+    public double getSaleChange() {
         return change;
     }
 
-    public List<ItemDTO> getObjectBasket() {
+    public List<ItemDTO> getSaleBasket() {
         return basket;
     }
 }
