@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SaleRegistryTest {
     private ByteArrayOutputStream printoutBuffer;
@@ -29,5 +30,16 @@ public class SaleRegistryTest {
         delegator = null;
         printoutBuffer = null;
         System.setOut(originalSysOut);
+    }
+
+    @Test
+    public void testSaveItem() {
+        SaleDTO dto = new SaleDTO(null, null, 0, 0, 0, 0);
+        saleRegistry.saveSale(dto);
+
+        int outcome = saleRegistry.getSaleRegistry().size();
+        int expectedOutcome = 1;
+
+        assertTrue(expectedOutcome == outcome, "Nothing was added to the saleRegistry");
     }
 }
