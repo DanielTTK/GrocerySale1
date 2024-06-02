@@ -4,9 +4,17 @@ import java.util.List;
 
 import se.kth.iv1350.sem3.integration.ItemDTO;
 
+/**
+ * Creates reciepts that details sales
+ */
 public class Reciept {
     private Sale sale;
 
+    /**
+     * Instanciates a reciept depending on a particular sale.
+     * 
+     * @param sale
+     */
     public Reciept(Sale sale) {
         this.sale = sale;
     }
@@ -47,8 +55,8 @@ public class Reciept {
      * functions exactly like <code>println</code>. Adds a linebreak at the end of
      * any message.
      * 
-     * @param reciept
-     * @param string
+     * @param reciept the string builder, in this case the reciept you are adding to
+     * @param string  whatever you want to add to the reciept
      */
     private void write(StringBuilder reciept, String string) {
         reciept.append(string);

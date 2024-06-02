@@ -5,19 +5,22 @@ import java.util.List;
 
 import se.kth.iv1350.sem3.model.Amount;
 
+/**
+ * Contains all calls that has to do with inventory.
+ */
 public class ItemRegistry {
     private List<ItemDTO> items = new ArrayList<>();
 
     /**
-     * Creates new instance of ItemRegistry. Also initilizes database.
+     * Creates new instance of <code>ItemRegistry</code>. Also initilizes database.
      */
     public ItemRegistry() {
         addAllItems();
     }
 
     /**
-     * gets items from ItemRegistry and returns specific one with specific
-     * identifier.
+     * gets items from <code>ItemRegistry</code> and returns specific one with
+     * specific identifier.
      * 
      * @param id id of product you want to get
      * @throws ItemRegistryException     gets called when something is wrong
@@ -77,7 +80,7 @@ public class ItemRegistry {
     }
 
     /**
-     * Removes an item from registry. Bandaid method, generally used to ensure that
+     * Removes an item from registry. Generally used to ensure that
      * something gets removed if it already doesn't when quantity is 0.
      * 
      * @param id
@@ -91,8 +94,8 @@ public class ItemRegistry {
     }
 
     /**
-     * Finds index in database by searching for identifier. Finds latest index of
-     * identical items.
+     * Finds <code>index</code> in database by searching for identifier. Finds
+     * latest index of identical items.
      * 
      * @param id identifier of item
      * @return returns index of item

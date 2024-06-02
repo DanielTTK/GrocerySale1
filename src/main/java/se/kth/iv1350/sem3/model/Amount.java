@@ -1,12 +1,16 @@
 package se.kth.iv1350.sem3.model;
 
+/**
+ * Type representing amount of money.
+ */
 public final class Amount {
     private final double amount;
 
-    public Amount() {
-        this(0.0);
-    }
-
+    /**
+     * Instanciates the amount to a specific double value.
+     * 
+     * @param amount the double value to be assigned as an amount instance.
+     */
     public Amount(double amount) {
         this.amount = amount;
     }
@@ -31,19 +35,33 @@ public final class Amount {
         return new Amount(Math.round(amount * 10.0) / 10.0);
     }
 
+    /**
+     * Multiplies amount value with a double, multipler.
+     * 
+     * @param multiplier the double to multiple the amount with.
+     * @return returns an Amount with multiplied value
+     */
     public Amount multiplyAmt(double multiplier) {
         return new Amount(amount * multiplier);
     }
 
+    /**
+     * Subtracts amount value with another amount value, subber.
+     * 
+     * @param subber the amount to subtract the original amount with.
+     * @return returns resulting amount
+     */
     public Amount subtractAmt(Amount subber) {
         return new Amount(amount - subber.amount);
     }
 
+    /**
+     * Adds amount value with another amount value, adder.
+     * 
+     * @param adder the amount to add the original amount with.
+     * @return returns resulting amount
+     */
     public Amount addAmt(Amount adder) {
-        return new Amount(amount + adder.amount);
-    }
-
-    public Amount addSavedAmt(Amount adder) {
         return new Amount(amount + adder.amount);
     }
 

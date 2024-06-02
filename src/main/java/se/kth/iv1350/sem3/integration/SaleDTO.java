@@ -4,6 +4,9 @@ import java.util.List;
 
 import se.kth.iv1350.sem3.model.Amount;
 
+/**
+ * An object, DTO, that stores sale details.
+ */
 public class SaleDTO {
     private final String saleTime;
     private final Amount totalCost;
@@ -13,7 +16,7 @@ public class SaleDTO {
     private final List<ItemDTO> basket;
 
     /**
-     * Creates an object representing a Sale occurance. DTO.
+     * Constructs/creates an object representing a Sale occurance. DTO.
      * 
      * @param saleTime
      * @param basket
@@ -60,7 +63,7 @@ public class SaleDTO {
     }
 
     /**
-     * Gets paidAmount from sale instance
+     * Gets <code>paidAmount</code> from sale instance
      * 
      * @return paidAmount
      */
@@ -69,7 +72,7 @@ public class SaleDTO {
     }
 
     /**
-     * Gets change from sale instance
+     * Gets <code>change</code> from sale instance
      * 
      * @return change
      */
@@ -78,7 +81,7 @@ public class SaleDTO {
     }
 
     /**
-     * Gets bought items, basket, from sale instance
+     * Gets list of bought items, <code>basket</code>, from sale instance
      * 
      * @return basket
      */

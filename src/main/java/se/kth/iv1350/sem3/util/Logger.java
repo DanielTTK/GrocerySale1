@@ -14,6 +14,10 @@ public class Logger {
     private static final String LOG_FILE_NAME = "sem3-log.txt";
     private PrintWriter logPrint;
 
+    /**
+     * 
+     * @throws IOException
+     */
     public Logger() throws IOException {
         logPrint = new PrintWriter(new FileWriter(LOG_FILE_NAME, true), true);
     }

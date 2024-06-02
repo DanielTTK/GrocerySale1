@@ -1,11 +1,3 @@
-/*
- * General thing to work on:
- * 
- * Deepen understanding on,
- *  definitions in constructors
- *  
- */
-
 package se.kth.iv1350.sem3.view;
 
 import java.io.IOException;

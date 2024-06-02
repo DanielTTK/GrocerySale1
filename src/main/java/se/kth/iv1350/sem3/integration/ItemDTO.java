@@ -2,6 +2,9 @@ package se.kth.iv1350.sem3.integration;
 
 import se.kth.iv1350.sem3.model.Amount;
 
+/**
+ * An object, DTO, that stores item details.
+ */
 public class ItemDTO {
     private final String itemIdentifier;
     private final String name;

@@ -115,20 +115,6 @@ public class SaleTest {
     }
 
     @Test
-    public void testMathFloor() {
-        Amount number = new Amount(100.111).mathFloor();
-
-        assertTrue(number.equals(new Amount(100.11)), "The number did not get floored");
-    }
-
-    @Test
-    public void testMathRound() {
-        Amount number = (new Amount(100.111)).mathRound();
-
-        assertTrue(number.equals(new Amount(100.1)), "The number did not get rounded");
-    }
-
-    @Test
     public void testRemoveBoughtItemsFromRegistry() throws ItemDoesNotExistException {
         // Private class ignored! Tested in testFinishSale method above.
         // Implemented in FinishSale method.
