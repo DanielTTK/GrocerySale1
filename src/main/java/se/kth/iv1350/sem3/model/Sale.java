@@ -125,9 +125,6 @@ public class Sale {
      * 
      * @throws ItemDoesNotExistException
      * @returns change, amount the customer gets back.
-     *          --> Displays this to cashier. No additional functionality in that
-     *          regard
-     * 
      */
     public void finishSale(Amount paidAmount) throws ItemDoesNotExistException {
         List<ItemDTO> currBasket = getBasket();
