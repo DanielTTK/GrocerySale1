@@ -76,7 +76,7 @@ public class ItemRegistry {
 
     /**
      * Removes an item from registry. Bandaid method, generally used to ensure that
-     * something gets removed.
+     * something gets removed if it already doesn't when quantity is 0.
      * 
      * @param id
      * @throws ItemDoesNotExistException
