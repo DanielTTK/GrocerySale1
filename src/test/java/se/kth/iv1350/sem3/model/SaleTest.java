@@ -82,7 +82,7 @@ public class SaleTest {
         ItemDTO item1 = itemRegistry.returnItem("abc123");
         ItemDTO item2 = itemRegistry.returnItem("def456");
 
-        double totalCost = item1.getCost() + item2.getCost();
+        double totalCost = (item1.getCost() + item2.getCost()) * 1.06;
         double expectedChange = 200 - totalCost;
 
         sale.finishSale(200);

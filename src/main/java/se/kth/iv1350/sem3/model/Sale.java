@@ -131,15 +131,9 @@ public class Sale {
      */
     public void finishSale(double paidAmount) throws ItemDoesNotExistException {
         List<ItemDTO> currBasket = getBasket();
-        double cost = 0;
-
         this.paidAmount = paidAmount;
 
-        for (int i = 0; i < currBasket.size(); i++) {
-            cost += currBasket.get(i).getCost();
-        }
-
-        change = paidAmount - cost;
+        change = paidAmount - getTotalCost();
         removeBoughtItemsFromRegistry(currBasket);
     }
 
