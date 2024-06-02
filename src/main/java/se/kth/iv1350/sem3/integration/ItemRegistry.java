@@ -50,11 +50,23 @@ public class ItemRegistry {
         }
     }
 
+    /**
+     * Decreases quantity from an item in registry.
+     * 
+     * @param id
+     * @param quantity
+     * @throws ItemDoesNotExistException
+     */
     public void decreaseItemQuanityFromRegistry(String id, int quantity) throws ItemDoesNotExistException { // copied
                                                                                                             // code?
         ItemDTO item = returnItem(id);
         int resultingQuantity = item.getQuantity() - quantity;
         double itemCostToDecrease = item.getCost() - item.getCost() * quantity;
+
+        if (resultingQuantity <= 0) {// add exception
+            items.remove(returnIndexOfItem(id));
+            return;
+        }
 
         ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
                 resultingQuantity, item.getCost() - itemCostToDecrease, item.getVAT());
@@ -63,7 +75,8 @@ public class ItemRegistry {
     }
 
     /**
-     * Removes an item from registry.
+     * Removes an item from registry. Bandaid method, generally used to ensure that
+     * something gets removed.
      * 
      * @param id
      * @throws ItemDoesNotExistException
@@ -71,13 +84,8 @@ public class ItemRegistry {
     public void removeItemFromRegistry(String id) throws ItemDoesNotExistException { // need to adjust it to remove from
                                                                                      // quantity! If q = 0, remove it
                                                                                      // alltogether
-        ItemDTO item = returnItem(id);
-
-        if (item.getQuantity() == 1) {
-            int indexOfItem = returnIndexOfItem(id);
-            items.remove(indexOfItem);
-        }
-
+        int indexOfItem = returnIndexOfItem(id);
+        items.remove(indexOfItem);
     }
 
     /**
