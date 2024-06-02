@@ -97,9 +97,10 @@ public class SaleTest {
 
     @Test
     public void testLogSaleInAccounting() throws ItemDoesNotExistException {
+        double paidAmount = 29.9 * (1 + 0.06); // 1 + vat multiplier, 6%, 0.06
         sale.addItemToBasket("abc123", 1);
         sale.calcTotal(1);
-        sale.finishSale(29.9);
+        sale.finishSale(paidAmount);
         sale.logSaleInAccounting();
         SaleDTO object = saleRegistry.getSaleRegistry().get(0);
 
