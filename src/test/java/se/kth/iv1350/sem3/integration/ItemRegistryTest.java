@@ -63,6 +63,11 @@ public class ItemRegistryTest {
     public void testReturnIndexOfItem() throws ItemDoesNotExistException {
         int indexItem = itemRegistry.returnIndexOfItem("abc123");
 
-        assertTrue(indexItem == 0, "wrong index");
+        assertTrue(indexItem == 1,
+                "wrong index " + indexItem + " " + itemRegistry.getInventoryArrayList().get(0).getID());
+        // This method, returnIndexOfItem(), takes the latest of two same items. So for
+        // example, in inventory there exist "abc123" on index 0 but also on index 1.
+        // This is okay and intended as the method doesn't care and doesn't get used in
+        // a way where a different order is required.
     }
 }

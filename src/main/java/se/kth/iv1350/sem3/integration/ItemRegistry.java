@@ -89,7 +89,8 @@ public class ItemRegistry {
     }
 
     /**
-     * Finds index in database by searching for identifier.
+     * Finds index in database by searching for identifier. Finds latest index of
+     * identical items.
      * 
      * @param id identifier of item
      * @return returns index of item
