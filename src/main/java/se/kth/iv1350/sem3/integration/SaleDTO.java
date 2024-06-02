@@ -30,27 +30,56 @@ public class SaleDTO {
         this.change = change;
     }
 
+    /**
+     * Gets sale time from sale
+     * 
+     * @return saleTime
+     */
     public String getSaleSaleTime() {
         return saleTime;
     }
 
-    public double getSaleTotalCost() { // adress in report that these don't need to be public as they are not used,
-                                       // discuss it
+    /**
+     * Gets sale total cost from sale
+     * 
+     * @return totalCost
+     */
+    public double getSaleTotalCost() {
         return totalCost;
     }
 
+    /**
+     * Gets sale total VAT from sale
+     * 
+     * @return totalVAT
+     */
     public double getSaleTotalVAT() {
         return totalVAT;
     }
 
+    /**
+     * Gets paidAmount from sale instance
+     * 
+     * @return paidAmount
+     */
     public double getSalePaidAmount() {
         return paidAmount;
     }
 
+    /**
+     * Gets change from sale instance
+     * 
+     * @return change
+     */
     public double getSaleChange() {
         return change;
     }
 
+    /**
+     * Gets bought items, basket, from sale instance
+     * 
+     * @return basket
+     */
     public List<ItemDTO> getSaleBasket() {
         return basket;
     }

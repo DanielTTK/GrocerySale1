@@ -28,26 +28,56 @@ public class ItemDTO {
         this.VATmultiplier = VATmultiplier;
     }
 
+    /**
+     * Gets item ID
+     * 
+     * @return itemIdentifier
+     */
     public String getID() {
         return itemIdentifier;
     }
 
+    /**
+     * Gets item name
+     * 
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets item description
+     * 
+     * @return description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets item quantity
+     * 
+     * @return quantity
+     */
     public int getQuantity() {
         return quantity;
     }
 
+    /**
+     * Gets item cost
+     * 
+     * @return cost
+     */
     public double getCost() {
         return cost;
     }
 
+    /**
+     * Gets item VAT multiplier
+     * 
+     * @return VATmultiplier
+     */
     public double getVAT() {
         return VATmultiplier;
     }

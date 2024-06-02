@@ -28,7 +28,7 @@ public class Controller {
     public void startSale() {
         sale = new Sale(delegator);
         reciept = new Reciept(sale);
-        sale.notifyAllSaleObservers(saleObservers);
+        // sale.notifyAllSaleObservers(saleObservers);
     }
 
     /**
@@ -100,7 +100,7 @@ public class Controller {
     }
 
     /**
-     * made for view to be able to view a method from Sale inside model.
+     * Gets the total cost from Sale inside model.
      * 
      * @return totalCost
      */
@@ -109,7 +109,7 @@ public class Controller {
     }
 
     /**
-     * made for view to be able to view a method from Sale inside model.
+     * Gets the total VAT from Sale inside model.
      * 
      * @return totalVAT
      */
@@ -118,7 +118,7 @@ public class Controller {
     }
 
     /**
-     * made for view to be able to view a method from Sale inside model.
+     * Gets the paid amount from Sale inside model.
      * 
      * @return paidAmount
      */

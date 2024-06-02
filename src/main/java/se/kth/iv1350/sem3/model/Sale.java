@@ -26,7 +26,7 @@ public class Sale {
     private double paidAmount;
     private double change;
 
-    private List<SaleObserver> saleObservers = new ArrayList<>();
+    // private List<SaleObserver> saleObservers = new ArrayList<>();
     private List<ItemDTO> basket = new ArrayList<>();
 
     /**
@@ -192,21 +192,6 @@ public class Sale {
         }
     }
 
-    /*
-     * private void notifyObservers(ItemDTO soldItem) {
-     * for (SaleObserver obs : saleObservers) {
-     * obs.finishedSale(soldItem);
-     * }
-     * }
-     */
-    public void notifySpecificSaleObserver(SaleObserver obs) { // add javadocs to these
-        saleObservers.add(obs);
-    }
-
-    public void notifyAllSaleObservers(List<SaleObserver> observers) {
-        saleObservers.addAll(observers);
-    }
-
     /**
      * Gets basket for other classes, mainly view.
      * 
@@ -243,4 +228,21 @@ public class Sale {
 
         return formatter.format(saleTime);
     }
+
+    /*
+     * private void notifyObservers(ItemDTO soldItem) {
+     * for (SaleObserver obs : saleObservers) {
+     * obs.finishedSale(soldItem);
+     * }
+     * }
+     * 
+     * public void notifySpecificSaleObserver(SaleObserver obs) { // add javadocs to
+     * these
+     * saleObservers.add(obs);
+     * }
+     * 
+     * public void notifyAllSaleObservers(List<SaleObserver> observers) {
+     * saleObservers.addAll(observers);
+     * }
+     */
 }

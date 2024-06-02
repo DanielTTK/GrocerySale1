@@ -147,9 +147,8 @@ public class ItemRegistry {
     }
 
     /**
-     * Hard coded database, this should be connected to some
-     * UI. Using normal array, arraylist to be implemented later for .add()
-     * function.
+     * Hard coded database, this should be connected to some external
+     * UI.
      */
     private void addAllItems() {
         items.add(new ItemDTO("abc123", "BigWheel Oatmeal",

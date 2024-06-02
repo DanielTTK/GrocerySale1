@@ -9,13 +9,13 @@
 package se.kth.iv1350.sem3.view;
 
 import java.io.IOException;
-//import java.util.ArrayList;
 import java.util.List;
 
 import se.kth.iv1350.sem3.controller.Controller;
-//import se.kth.iv1350.sem3.util.Logger;
 import se.kth.iv1350.sem3.integration.ItemDTO;
 import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+
+//import se.kth.iv1350.sem3.util.Logger;
 
 /**
  * This is a placeholder for the real view. Contains hardcoded execution,
@@ -38,7 +38,7 @@ public class View {
      * Simulating a user input from a view screen that calls to all system
      * operations. Prints out everything that happens in groups. For example, the
      * pay method call both acknowledges the payment the customer makes but also
-     * removes items from the item inventory, therefor they are printed close to
+     * removes items from the item inventory, therefore they are printed close to
      * eachother.
      * 
      * @throws DoesNotExistException exception if scanned item does not exist.

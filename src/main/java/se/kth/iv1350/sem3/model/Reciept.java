@@ -13,7 +13,7 @@ public class Reciept {
 
     /**
      * Prints a reciept containing all information needed to prove that a sale has
-     * taken place. Details the sale and accounting aswell.
+     * taken place. Details the sale and payment.
      */
     public String createRecieptDigital() {
         StringBuilder reciept = new StringBuilder();
@@ -44,7 +44,8 @@ public class Reciept {
     }
 
     /**
-     * functions exactly like println. Adds a linebreak at the end of any message.
+     * functions exactly like <code>println</code>. Adds a linebreak at the end of
+     * any message.
      * 
      * @param reciept
      * @param string

@@ -17,6 +17,12 @@ public class SaleRegistry {
         accounting.add(currSale);
     }
 
+    /**
+     * Gets the whole accounting system, sale registry from
+     * <code>saleRegistry</code>.
+     * 
+     * @return
+     */
     public List<SaleDTO> getSaleRegistry() {
         return accounting;
     }
