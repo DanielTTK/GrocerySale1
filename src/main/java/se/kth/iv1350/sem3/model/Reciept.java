@@ -27,18 +27,18 @@ public class Reciept {
             write(reciept,
                     itemInstance.getName() + "             " +
                             itemInstance.getQuantity() + " x "
-                            + sale.mathRound(itemInstance.getCost() / itemInstance.getQuantity())
+                            + (itemInstance.getCost().multiplyAmt(1 / itemInstance.getQuantity()))
                             + "      " +
-                            itemInstance.getCost() + " SEK");
+                            itemInstance.getCost().toString() + " SEK");
         }
         write(reciept,
-                "\nTotal: " + sale.mathFloor(sale.getTotalCost()) + " SEK" +
-                        "\nVAT:   " + sale.mathFloor(sale.getTotalVAT()) +
+                "\nTotal: " + (sale.getTotalCost()).mathFloor().toString() + " SEK" +
+                        "\nVAT:   " + (sale.getTotalVAT()).mathFloor().toString() +
 
-                        "\n\nPayment: " + sale.mathFloor(sale.getPaidAmount()) +
-                        "\nChange:  " + sale.mathFloor(sale.getChange()) +
+                        "\n\nPayment: " + (sale.getPaidAmount()).mathFloor().toString() +
+                        "\nChange:  " + (sale.getChange()).mathFloor().toString() +
                         "\n------------------- End receipt -------------------" +
-                        "\n\nChange to give the customer: " + sale.mathFloor(sale.getChange()));
+                        "\n\nChange to give the customer: " + (sale.getChange()).mathFloor().toString());
 
         return reciept.toString();
     }

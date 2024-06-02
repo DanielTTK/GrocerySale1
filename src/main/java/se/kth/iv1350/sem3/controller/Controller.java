@@ -70,7 +70,7 @@ public class Controller {
      * @param paidAmount
      * @throws ItemDoesNotExistException
      */
-    public void pay(double paidAmount) throws ItemDoesNotExistException {
+    public void pay(Amount paidAmount) throws ItemDoesNotExistException {
         sale.finishSale(paidAmount);
     }
 
@@ -90,21 +90,11 @@ public class Controller {
     }
 
     /**
-     * Floors number to 2 closest decimals.
-     * 
-     * @param number
-     * @return floored number
-     */
-    public double mathFloor(double number) {
-        return sale.mathFloor(number);
-    }
-
-    /**
      * Gets the total cost from Sale inside model.
      * 
      * @return totalCost
      */
-    public double getTotalCost() {
+    public Amount getTotalCost() {
         return sale.getTotalCost();
     }
 
@@ -113,7 +103,7 @@ public class Controller {
      * 
      * @return totalVAT
      */
-    public double getTotalVAT() {
+    public Amount getTotalVAT() {
         return sale.getTotalVAT();
     }
 
@@ -122,7 +112,7 @@ public class Controller {
      * 
      * @return paidAmount
      */
-    public double getPaidAmount() {
+    public Amount getPaidAmount() {
         return sale.getPaidAmount();
     }
 
@@ -131,7 +121,7 @@ public class Controller {
      * 
      * @return change
      */
-    public double getChange() {
+    public Amount getChange() {
         return sale.getChange();
     }
 

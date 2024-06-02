@@ -7,6 +7,9 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import se.kth.iv1350.sem3.model.Amount;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SaleRegistryTest {
@@ -34,7 +37,7 @@ public class SaleRegistryTest {
 
     @Test
     public void testSaveItem() {
-        SaleDTO dto = new SaleDTO(null, null, 0, 0, 0, 0);
+        SaleDTO dto = new SaleDTO(null, null, new Amount(0), new Amount(0), new Amount(0), new Amount(0));
         saleRegistry.saveSale(dto);
 
         int outcome = saleRegistry.getSaleRegistry().size();

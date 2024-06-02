@@ -2,12 +2,14 @@ package se.kth.iv1350.sem3.integration;
 
 import java.util.List;
 
+import se.kth.iv1350.sem3.model.Amount;
+
 public class SaleDTO {
     private final String saleTime;
-    private final double totalCost;
-    private final double totalVAT;
-    private final double paidAmount;
-    private final double change;
+    private final Amount totalCost;
+    private final Amount totalVAT;
+    private final Amount paidAmount;
+    private final Amount change;
     private final List<ItemDTO> basket;
 
     /**
@@ -20,8 +22,8 @@ public class SaleDTO {
      * @param paidAmount
      * @param change
      */
-    public SaleDTO(String saleTime, List<ItemDTO> basket, double totalCost, double totalVAT, double paidAmount,
-            double change) {
+    public SaleDTO(String saleTime, List<ItemDTO> basket,
+            Amount totalCost, Amount totalVAT, Amount paidAmount, Amount change) {
         this.saleTime = saleTime;
         this.basket = basket;
         this.totalCost = totalCost;
@@ -44,7 +46,7 @@ public class SaleDTO {
      * 
      * @return totalCost
      */
-    public double getSaleTotalCost() {
+    public Amount getSaleTotalCost() {
         return totalCost;
     }
 
@@ -53,7 +55,7 @@ public class SaleDTO {
      * 
      * @return totalVAT
      */
-    public double getSaleTotalVAT() {
+    public Amount getSaleTotalVAT() {
         return totalVAT;
     }
 
@@ -62,7 +64,7 @@ public class SaleDTO {
      * 
      * @return paidAmount
      */
-    public double getSalePaidAmount() {
+    public Amount getSalePaidAmount() {
         return paidAmount;
     }
 
@@ -71,7 +73,7 @@ public class SaleDTO {
      * 
      * @return change
      */
-    public double getSaleChange() {
+    public Amount getSaleChange() {
         return change;
     }
 

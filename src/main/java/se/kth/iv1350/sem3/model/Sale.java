@@ -20,11 +20,11 @@ public class Sale {
     private SaleRegistry saleRegistry;
     private LocalDateTime saleTime;
 
-    private double totalCost;
-    private double totalVAT;
+    private Amount totalCost;
+    private Amount totalVAT;
 
-    private double paidAmount;
-    private double change;
+    private Amount paidAmount;
+    private Amount change;
 
     // private List<SaleObserver> saleObservers = new ArrayList<>();
     private List<ItemDTO> basket = new ArrayList<>();
@@ -77,10 +77,10 @@ public class Sale {
                                                                                                      // itemRegistry
                                                                                                      // class?
         int resultingQuantity = (item.getQuantity() + quantity);
-        double itemCostToAdd = (itemRegistry.returnItem(item.getID()).getCost() * quantity);
+        Amount itemCostToAdd = (itemRegistry.returnItem(item.getID()).getCost().multiplyAmt(quantity));
 
         ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
-                resultingQuantity, mathRound(item.getCost() + itemCostToAdd), item.getVAT());
+                resultingQuantity, (item.getCost().addAmt(itemCostToAdd)).mathRound(), item.getVAT());
         return newItem;
     }
 
@@ -93,10 +93,10 @@ public class Sale {
      *         quantity
      */
     private ItemDTO itemSetQuantity(ItemDTO item, int quantity) throws ItemDoesNotExistException {
-        double itemCostToAdd = (itemRegistry.returnItem(item.getID()).getCost() * (quantity - 1));
+        Amount itemCostToAdd = (itemRegistry.returnItem(item.getID()).getCost().multiplyAmt((quantity - 1)));
 
         ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
-                quantity, mathRound(item.getCost() + itemCostToAdd), item.getVAT());
+                quantity, (item.getCost().addAmt(itemCostToAdd)).mathRound(), item.getVAT());
         return newItem;
     }
 
@@ -108,14 +108,14 @@ public class Sale {
      *                            to calculate total vat and amount
      */
     public void calcTotal(int numberOfItemsToCalc) {
-        totalCost = 0;
+        totalCost = new Amount(0);
         List<ItemDTO> currBasket = getBasket();
         for (int i = 0; i < numberOfItemsToCalc; i++) {
             ItemDTO itemInstance = currBasket.get(i);
-            totalCost += itemInstance.getCost();
+            totalCost = (totalCost.addAmt(itemInstance.getCost()));
         }
-        totalVAT = totalCost * 0.06;
-        totalCost += totalVAT;
+        totalVAT = totalCost.multiplyAmt(0.06);
+        totalCost = totalCost.addAmt(totalVAT);
     }
 
     /**
@@ -129,11 +129,11 @@ public class Sale {
      *          regard
      * 
      */
-    public void finishSale(double paidAmount) throws ItemDoesNotExistException {
+    public void finishSale(Amount paidAmount) throws ItemDoesNotExistException {
         List<ItemDTO> currBasket = getBasket();
         this.paidAmount = paidAmount;
 
-        change = paidAmount - getTotalCost();
+        change = paidAmount.subtractAmt(getTotalCost());
         removeBoughtItemsFromRegistry(currBasket);
     }
 
@@ -144,26 +144,6 @@ public class Sale {
         SaleDTO saleInstance = new SaleDTO(getSaleTime(), getBasket(), getTotalCost(),
                 getTotalVAT(), getPaidAmount(), getChange());
         saleRegistry.saveSale(saleInstance);
-    }
-
-    /**
-     * Floors doubles with 2 significant decimals
-     * 
-     * @param number number to be floored
-     * @return returns floored number
-     */
-    public double mathFloor(double number) {
-        return Math.floor(number * 100) / 100;
-    }
-
-    /**
-     * Rounds doubles with 1 significant decimal
-     * 
-     * @param number number to be floored
-     * @return returns floored number
-     */
-    public double mathRound(double number) {
-        return Math.round(number * 10.0) / 10.0;
     }
 
     /**
@@ -195,19 +175,19 @@ public class Sale {
         return basket;
     }
 
-    public double getTotalCost() {
+    public Amount getTotalCost() {
         return totalCost;
     }
 
-    public double getTotalVAT() {
+    public Amount getTotalVAT() {
         return totalVAT;
     }
 
-    public double getPaidAmount() {
+    public Amount getPaidAmount() {
         return paidAmount;
     }
 
-    public double getChange() {
+    public Amount getChange() {
         return change;
     }
 

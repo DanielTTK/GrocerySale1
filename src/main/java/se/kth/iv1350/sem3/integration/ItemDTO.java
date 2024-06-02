@@ -1,11 +1,13 @@
 package se.kth.iv1350.sem3.integration;
 
+import se.kth.iv1350.sem3.model.Amount;
+
 public class ItemDTO {
     private final String itemIdentifier;
     private final String name;
     private final String description;
     private final int quantity;
-    private final double cost;
+    private final Amount cost;
     private final double VATmultiplier;
 
     /**
@@ -18,8 +20,8 @@ public class ItemDTO {
      * @param cost
      * @param VATmultiplier
      */
-    public ItemDTO(String itemIdentifier, String name, String description, int quantity, double cost,
-            double VATmultiplier) {
+    public ItemDTO(String itemIdentifier, String name, String description, int quantity,
+            Amount cost, double VATmultiplier) {
         this.itemIdentifier = itemIdentifier;
         this.name = name;
         this.description = description;
@@ -69,7 +71,7 @@ public class ItemDTO {
      * 
      * @return cost
      */
-    public double getCost() {
+    public Amount getCost() {
         return cost;
     }
 

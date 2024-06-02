@@ -14,6 +14,7 @@ import java.util.List;
 import se.kth.iv1350.sem3.controller.Controller;
 import se.kth.iv1350.sem3.integration.ItemDTO;
 import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.model.Amount;
 
 //import se.kth.iv1350.sem3.util.Logger;
 
@@ -52,8 +53,8 @@ public class View {
         contr.scanItem("def456", 1);
         displayAllScannedItemsFromBasket();
 
-        contr.pay(200);
-        System.out.println("Customer pays " + contr.mathFloor(contr.getPaidAmount()) + " SEK");
+        contr.pay(new Amount(200));
+        System.out.println("Customer pays " + (contr.getPaidAmount()).mathFloor() + " SEK");
         System.out.println("Basket items successfully decreased from inventory.");
 
         contr.logSaleInAccounting();
@@ -79,8 +80,8 @@ public class View {
                     "\nVAT: " + itemInstance.getVAT() * 100 + "%" +
                     "\nItem description: " + itemInstance.getDescription() +
 
-                    "\n\nTotal cost (incl VAT): " + contr.mathFloor(contr.getTotalCost()) + " SEK" +
-                    "\nTotal VAT: " + contr.mathFloor(contr.getTotalVAT()) + "\n\n");
+                    "\n\nTotal cost (incl VAT): " + (contr.getTotalCost()).mathFloor() + " SEK" +
+                    "\nTotal VAT: " + (contr.getTotalVAT()).mathFloor() + "\n\n");
         }
     }
 }

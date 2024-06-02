@@ -3,6 +3,8 @@ package se.kth.iv1350.sem3.integration;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.kth.iv1350.sem3.model.Amount;
+
 public class ItemRegistry {
     private List<ItemDTO> items = new ArrayList<>();
 
@@ -61,7 +63,7 @@ public class ItemRegistry {
                                                                                                             // code?
         ItemDTO item = returnItem(id);
         int resultingQuantity = item.getQuantity() - quantity;
-        double itemCostToDecrease = item.getCost() - item.getCost() * quantity;
+        Amount itemCostToDecrease = item.getCost().subtractAmt(item.getCost().multiplyAmt(quantity));
 
         if (resultingQuantity <= 0) {// add exception
             items.remove(returnIndexOfItem(id));
@@ -69,7 +71,7 @@ public class ItemRegistry {
         }
 
         ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
-                resultingQuantity, item.getCost() - itemCostToDecrease, item.getVAT());
+                resultingQuantity, item.getCost().subtractAmt(itemCostToDecrease), item.getVAT());
 
         items.set(returnIndexOfItem(id), newItem);
     }
@@ -152,12 +154,12 @@ public class ItemRegistry {
      */
     private void addAllItems() {
         items.add(new ItemDTO("abc123", "BigWheel Oatmeal",
-                "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 1, 29.90, 0.06));
+                "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 1, new Amount(29.90), 0.06));
 
         items.add(new ItemDTO("abc123", "BigWheel Oatmeal",
-                "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 1, 29.90, 0.06));
+                "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 1, new Amount(29.90), 0.06));
 
         items.add(new ItemDTO("def456", "YouGoGo Blueberry",
-                "YouGoGo Blueberry 240 g, low sugar yoghurt, blueberry flavour", 1, 14.90, 0.06));
+                "YouGoGo Blueberry 240 g, low sugar yoghurt, blueberry flavour", 1, new Amount(14.90), 0.06));
     }
 }

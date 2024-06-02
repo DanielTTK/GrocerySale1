@@ -54,10 +54,12 @@ public class SaleTest {
         ItemDTO item1 = sale.getBasket().get(0);
         ItemDTO item2 = sale.getBasket().get(1);
 
-        assertTrue(item1.getQuantity() == 3 && item1.getCost() == sale.mathRound(29.9 * 3),
-                "Item1 could not be added to basket! Cost: " + item1.getCost() + " Quan. = " + item1.getQuantity());
-        assertTrue(item2.getQuantity() == 3 && item2.getCost() == sale.mathRound(14.9 * 3),
-                "Item2 could not be added to basket! Cost: " + item2.getCost() + " Quan. = " + item2.getQuantity());
+        assertTrue(item1.getQuantity() == 3 && item1.getCost().equals(new Amount(29.9 * 3).mathRound()),
+                "Item1 could not be added to basket! Cost: " + item1.getCost() + " Quan. = "
+                        + item1.getQuantity());
+        assertTrue(item2.getQuantity() == 3 && item2.getCost().equals(new Amount(14.9 * 3).mathRound()),
+                "Item2 could not be added to basket! Cost: " + item2.getCost() + " Quan. = "
+                        + item2.getQuantity());
     }
 
     @Test
@@ -66,10 +68,10 @@ public class SaleTest {
         sale.addItemToBasket("def456", 1);
 
         sale.calcTotal(1);
-        double total = sale.getTotalCost();
-        double abc123cost = 29.90 * 1.06 * 2;
+        Amount total = sale.getTotalCost();
+        Amount abc123cost = new Amount(29.90 * 1.06 * 2);
 
-        assertTrue((total == abc123cost), "Failed to calc total. Total expected: " + total);
+        assertTrue((total.equals(abc123cost)), "Failed to calc total. Total expected: " + total.toString());
     }
 
     @Test
@@ -82,12 +84,12 @@ public class SaleTest {
         ItemDTO item1 = itemRegistry.returnItem("abc123");
         ItemDTO item2 = itemRegistry.returnItem("def456");
 
-        double totalCost = (item1.getCost() + item2.getCost()) * 1.06;
-        double expectedChange = 200 - totalCost;
+        Amount totalCost = (item1.getCost().addAmt(item2.getCost())).multiplyAmt(1.06);
+        Amount expectedChange = new Amount(200).subtractAmt(totalCost);
 
-        sale.finishSale(200);
+        sale.finishSale(new Amount(200));
 
-        assertTrue(sale.getChange() == expectedChange,
+        assertTrue(sale.getChange().equals(expectedChange),
                 "Incorrected change! Change expected: " + sale.getChange() + " Change found: "
                         + expectedChange);
         assertTrue(item1.getQuantity() == 1, "The item did not decrease!");
@@ -97,7 +99,7 @@ public class SaleTest {
 
     @Test
     public void testLogSaleInAccounting() throws ItemDoesNotExistException {
-        double paidAmount = 29.9 * (1 + 0.06); // 1 + vat multiplier, 6%, 0.06
+        Amount paidAmount = new Amount(29.9 * (1 + 0.06)); // 1 + vat multiplier, 6%, 0.06
         sale.addItemToBasket("abc123", 1);
         sale.calcTotal(1);
         sale.finishSale(paidAmount);
@@ -107,23 +109,23 @@ public class SaleTest {
         assertTrue(
                 object.getSaleBasket().size() == 1,
                 "Sale not properly stored.");
-        assertTrue(object.getSaleTotalCost() == 29.9 + object.getSaleTotalVAT(), "Wrong total cost " +
-                object.getSaleTotalCost());
-        assertTrue(object.getSaleChange() == 0, "Wrong change" + object.getSaleChange());
+        assertTrue(object.getSaleTotalCost().equals(new Amount(29.9).addAmt(object
+                .getSaleTotalVAT())), "Wrong total cost " + object.getSaleTotalCost());
+        assertTrue(object.getSaleChange().equals(new Amount(0)), "Wrong change" + object.getSaleChange());
     }
 
     @Test
     public void testMathFloor() {
-        double number = sale.mathFloor(100.111);
+        Amount number = new Amount(100.111).mathFloor();
 
-        assertTrue(number == 100.11, "The number did not get floored");
+        assertTrue(number.equals(new Amount(100.11)), "The number did not get floored");
     }
 
     @Test
     public void testMathRound() {
-        double number = sale.mathRound(100.111);
+        Amount number = (new Amount(100.111)).mathRound();
 
-        assertTrue(number == 100.1, "The number did not get rounded");
+        assertTrue(number.equals(new Amount(100.1)), "The number did not get rounded");
     }
 
     @Test
