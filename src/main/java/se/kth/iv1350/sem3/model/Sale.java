@@ -167,26 +167,46 @@ public class Sale {
     }
 
     /**
-     * Gets basket for other classes, mainly view.
+     * Gets basket for other classes..
      * 
-     * @return array of existing items ordered
+     * @return array of existing items ordered, mainly view.
      */
     public List<ItemDTO> getBasket() {
         return basket;
     }
 
+    /**
+     * Gets total cost for other classes, mainly view.
+     * 
+     * @return totalCost
+     */
     public Amount getTotalCost() {
         return totalCost;
     }
 
+    /**
+     * Gets total vat for other classes, mainly view.
+     * 
+     * @return totalVAT
+     */
     public Amount getTotalVAT() {
         return totalVAT;
     }
 
+    /**
+     * Gets the paid amount by customer for other classes, mainly view.
+     * 
+     * @return paid amount by customer
+     */
     public Amount getPaidAmount() {
         return paidAmount;
     }
 
+    /**
+     * Gets change for other classes, mainly view.
+     * 
+     * @return array of existing items ordered
+     */
     public Amount getChange() {
         return change;
     }
