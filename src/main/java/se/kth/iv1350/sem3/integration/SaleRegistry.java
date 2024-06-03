@@ -27,7 +27,7 @@ public class SaleRegistry {
      * 
      * @return
      */
-    public List<SaleDTO> getSaleRegistry() {
+    public List<SaleDTO> getSaleRegistryList() {
         return accounting;
     }
 }

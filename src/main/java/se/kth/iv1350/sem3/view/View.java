@@ -29,7 +29,9 @@ public class View {
 
     /**
      * Simulating a user input from a view screen that calls to all system
-     * operations. Prints out everything that happens in groups. For example, the
+     * operations.
+     * 
+     * Prints out everything that happens in groups. For example, the
      * pay method call both acknowledges the payment the customer makes but also
      * removes items from the item inventory, therefore they are printed close to
      * eachother.
@@ -40,7 +42,7 @@ public class View {
         contr.startSale();
         System.out.println("Sale has been started.");
 
-        contr.scanItem("abc123", 2);
+        contr.scanItem("abc123", 1);
         contr.scanItem("abc123", 1);
         contr.scanItem("def456", 1);
         displayAllScannedItemsFromBasket();

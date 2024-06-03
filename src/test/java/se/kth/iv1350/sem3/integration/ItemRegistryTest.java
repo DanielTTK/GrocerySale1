@@ -42,20 +42,28 @@ public class ItemRegistryTest {
     @Test
     public void testDecreaseItemQuanityFromRegistry() throws ItemDoesNotExistException {
         itemRegistry.decreaseItemQuanityFromRegistry("abc123", 1);
-        itemRegistry.decreaseItemQuanityFromRegistry("def456", 1);
 
         ItemDTO item1 = itemRegistry.getInventoryArrayList().get(0);
 
         assertTrue(item1.getQuantity() == 1, "Quantity did not decrease");
-        assertTrue(itemRegistry.getInventoryArrayList().size() == 1, "Length is wrong, it is: " + itemRegistry
+        assertTrue(itemRegistry.getInventoryArrayList().size() == 2, "Length is wrong, it is: " + itemRegistry
                 .getInventoryArrayList().size());
+    }
+
+    @Test
+    public void testRemoveItemDueToQuanityDecreaseFromRegistry() throws ItemDoesNotExistException {
+        itemRegistry.decreaseItemQuanityFromRegistry("def456", 1);
+
+        assertTrue(itemRegistry.getInventoryArrayList().size() == 1,
+                "Length is wrong, meaning item did not get removed due to quantity. It is: " + itemRegistry
+                        .getInventoryArrayList().size());
     }
 
     @Test
     public void testRemoveItemFromRegistry() throws ItemDoesNotExistException {
         itemRegistry.removeItemFromRegistry("def456");
 
-        assertTrue(itemRegistry.getInventoryArrayList().size() == 2, "Length is wrong, it is: " + itemRegistry
+        assertTrue(itemRegistry.getInventoryArrayList().size() == 1, "Length is wrong, it is: " + itemRegistry
                 .getInventoryArrayList().size());
     }
 
@@ -63,11 +71,7 @@ public class ItemRegistryTest {
     public void testReturnIndexOfItem() throws ItemDoesNotExistException {
         int indexItem = itemRegistry.returnIndexOfItem("abc123");
 
-        assertTrue(indexItem == 1,
+        assertTrue(indexItem == 0,
                 "wrong index " + indexItem + " " + itemRegistry.getInventoryArrayList().get(0).getID());
-        // This method, returnIndexOfItem(), takes the latest of two same items. So for
-        // example, in inventory there exist "abc123" on index 0 but also on index 1.
-        // This is okay and intended as the method doesn't care and doesn't get used in
-        // a way where a different order is required.
     }
 }

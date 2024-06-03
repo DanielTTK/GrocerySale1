@@ -51,21 +51,21 @@ public class AmountTest {
     public void testMultiplyAmt() {
         Amount newAmount = amount.multiplyAmt(2);
 
-        assertTrue(newAmount.equals(new Amount(22.2)));
+        assertTrue(newAmount.equals(new Amount(22.2)), "Value did not get multiplied properly");
     }
 
     @Test
     public void testSubtractAmt() {
         Amount newAmount = amount.subtractAmt(amount2);
 
-        assertTrue(newAmount.equals(new Amount(6.1)));
+        assertTrue(newAmount.equals(new Amount(6.1)), "Value did not get subtracted properly");
     }
 
     @Test
     public void testAddAmt() {
         Amount newAmount = amount.addAmt(amount2);
 
-        assertTrue(newAmount.equals(new Amount(16.1)));
+        assertTrue(newAmount.equals(new Amount(16.1)), "Value did not get added properly");
     }
 
     @Test
@@ -76,4 +76,23 @@ public class AmountTest {
         assertFalse(falseBoolean, "returned true when supposed to be false");
         assertTrue(trueBoolean, "returned false when supposed to be true");
     }
+
+    @Test
+    public void testEqualsNull() {
+        assertFalse(amount.equals(null), "True when supposed to be false for null value.");
+    }
+
+    @Test
+    public void testEqualsObject() {
+        Object object = new Object();
+        assertFalse(amount.equals(object),
+                "True when supposed to be false for object value. Amount is not supposed to be equal to empty object");
+    }
+
+    @Test
+    public void testEqualsNoArg() {
+        // No test because this case is not supposed to happen, Amount() just gives off
+        // an error.
+    }
+
 }

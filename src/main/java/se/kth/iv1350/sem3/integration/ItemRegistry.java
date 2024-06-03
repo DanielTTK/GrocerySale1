@@ -68,8 +68,8 @@ public class ItemRegistry {
         int resultingQuantity = item.getQuantity() - quantity;
         Amount itemCostToDecrease = item.getCost().subtractAmt(item.getCost().multiplyAmt(quantity));
 
-        if (resultingQuantity <= 0) {// add exception
-            items.remove(returnIndexOfItem(id));
+        if (resultingQuantity <= 0) {// add exception when quantity is negative on sem4
+            removeItemFromRegistry(id);
             return;
         }
 
@@ -86,9 +86,7 @@ public class ItemRegistry {
      * @param id
      * @throws ItemDoesNotExistException
      */
-    public void removeItemFromRegistry(String id) throws ItemDoesNotExistException { // need to adjust it to remove from
-                                                                                     // quantity! If q = 0, remove it
-                                                                                     // alltogether
+    public void removeItemFromRegistry(String id) throws ItemDoesNotExistException { // make private?
         int indexOfItem = returnIndexOfItem(id);
         items.remove(indexOfItem);
     }
@@ -154,13 +152,13 @@ public class ItemRegistry {
     /**
      * Hard coded database, this should be connected to some external
      * UI.
+     * Note: Every object in inventory are seperate elements. This list does not
+     * have the same functionality as basket in Sale, where quantity adds up for
+     * identical items.
      */
     private void addAllItems() {
         items.add(new ItemDTO("abc123", "BigWheel Oatmeal",
-                "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 1, new Amount(29.90), 0.06));
-
-        items.add(new ItemDTO("abc123", "BigWheel Oatmeal",
-                "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 1, new Amount(29.90), 0.06));
+                "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 2, new Amount(29.90), 0.06));
 
         items.add(new ItemDTO("def456", "YouGoGo Blueberry",
                 "YouGoGo Blueberry 240 g, low sugar yoghurt, blueberry flavour", 1, new Amount(14.90), 0.06));
