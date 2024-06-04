@@ -55,8 +55,6 @@ public class ErrorDisplayTest {
             contr.startSale();
             contr.scanItem("rnd123", 1);
 
-            throw new DoesNotExistException("rnd123");
-
         } catch (DoesNotExistException ex) {
             String expectedString = "Cannot recognize identifier " + "rnd123" + ", since it does not exist.";
             assertTrue(ex.getMessage().equals(expectedString), "Wrong message to client!");

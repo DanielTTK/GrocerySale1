@@ -1,11 +1,10 @@
 package se.kth.iv1350.sem3.util;
 
-//import se.kth.iv1350.sem3.util.Logger;
 import se.kth.iv1350.sem3.integration.*;
 import se.kth.iv1350.sem3.controller.Controller;
 import se.kth.iv1350.sem3.controller.GeneralException;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -22,14 +21,12 @@ public class LoggerTest {
     private PrintStream originalSysOut;
 
     private String logFile = "sem3-log.txt";
-    private Logger logger;
 
     @BeforeEach
     public void setUp() throws IOException {
         // Change out old out with new.
         printoutBuffer = new ByteArrayOutputStream();
         PrintStream inMemSysOut = new PrintStream(printoutBuffer);
-        logger = new Logger();
         originalSysOut = System.out;
         System.setOut(inMemSysOut);
     }
@@ -37,12 +34,11 @@ public class LoggerTest {
     @AfterEach
     public void tearDown() {
         printoutBuffer = null;
-        logger = null;
         System.setOut(originalSysOut);
     }
 
     @Test
-    void testLogException() throws IOException, DoesNotExistException, GeneralException {
+    void testLogException() throws IOException {
         try {
             SystemDelegator delegator = new SystemDelegator();
             Controller contr = new Controller(delegator);
@@ -50,8 +46,7 @@ public class LoggerTest {
             System.out.println("Trying to induce a database crash");
             contr.startSale();
             contr.scanItem("err111", 1);
-        } catch (ItemRegistryException ex) {
-            logger.logException(ex);
+        } catch (GeneralException ex) {
             String expectedString = "Critical database failure";
             assertTrue(fileContains(expectedString), "Wrong logger message!");
         } catch (DoesNotExistException ex) {
