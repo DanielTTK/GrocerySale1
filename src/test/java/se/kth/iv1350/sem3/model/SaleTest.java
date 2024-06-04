@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import se.kth.iv1350.sem3.integration.ItemDTO;
-import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.ItemRegistry;
 import se.kth.iv1350.sem3.integration.SaleDTO;
 import se.kth.iv1350.sem3.integration.SaleRegistry;
@@ -45,7 +45,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testDetailsOfItemsAddedToBasket() throws ItemDoesNotExistException {
+    public void testDetailsOfItemsAddedToBasket() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 2);
         sale.addItemToBasket("def456", 1);
 
@@ -61,7 +61,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testAddMultipleItemsWithQuantityOneToBasket() throws ItemDoesNotExistException {
+    public void testAddMultipleItemsWithQuantityOneToBasket() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 1);
         sale.addItemToBasket("def456", 1);
 
@@ -70,7 +70,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testAddOneItemWithQuantityMultipleToBasket() throws ItemDoesNotExistException {
+    public void testAddOneItemWithQuantityMultipleToBasket() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 2);
 
         ItemDTO item1 = sale.getBasket().get(0);
@@ -81,7 +81,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testAddMultipleItemsWithQuantityMultipleToBasket() throws ItemDoesNotExistException {
+    public void testAddMultipleItemsWithQuantityMultipleToBasket() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 2);
         sale.addItemToBasket("def456", 2);
 
@@ -91,7 +91,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testAddMultipleExistingItemToIncreaseQuantityInBasket() throws ItemDoesNotExistException {
+    public void testAddMultipleExistingItemToIncreaseQuantityInBasket() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 2);
         sale.addItemToBasket("abc123", 1);
 
@@ -103,7 +103,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testCalcTotalOneItemMultipleQuantity() throws ItemDoesNotExistException {
+    public void testCalcTotalOneItemMultipleQuantity() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 2);
 
         sale.calcTotal(1);
@@ -114,7 +114,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testCalcTotalTwoDifferentItems() throws ItemDoesNotExistException {
+    public void testCalcTotalTwoDifferentItems() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 2);
         sale.addItemToBasket("def456", 1);
 
@@ -126,7 +126,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testCalcTotalSkipSecondItem() throws ItemDoesNotExistException {
+    public void testCalcTotalSkipSecondItem() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 2);
         sale.addItemToBasket("def456", 1);
 
@@ -139,7 +139,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testFinishSaleChangeAmount() throws ItemDoesNotExistException {
+    public void testFinishSaleChangeAmount() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 1);
         sale.addItemToBasket("def456", 1);
 
@@ -159,7 +159,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testFinishSaleQuantityDecreaseForItemInInventory() throws ItemDoesNotExistException {
+    public void testFinishSaleQuantityDecreaseForItemInInventory() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 1);
         sale.addItemToBasket("def456", 1);
 
@@ -172,7 +172,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testFinishSaleItemRemovalInInventoryDueToQuantity() throws ItemDoesNotExistException {
+    public void testFinishSaleItemRemovalInInventoryDueToQuantity() throws DoesNotExistException {
         sale.addItemToBasket("abc123", 1);
         sale.addItemToBasket("def456", 1);
 
@@ -186,7 +186,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testLogSaleInAccountingStorage() throws ItemDoesNotExistException {
+    public void testLogSaleInAccountingStorage() throws DoesNotExistException {
         Amount paidAmount = new Amount(29.9 * (1 + 0.06)); // 1 + vat multiplier, 6%, 0.06
         sale.addItemToBasket("abc123", 1);
         sale.calcTotal(1);
@@ -200,7 +200,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testLogSaleInAccountingTotalCost() throws ItemDoesNotExistException {
+    public void testLogSaleInAccountingTotalCost() throws DoesNotExistException {
         Amount paidAmount = new Amount(29.9 * (1 + 0.06)); // 1 + vat multiplier, 6%, 0.06
         sale.addItemToBasket("abc123", 1);
         sale.calcTotal(1);
@@ -214,7 +214,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testLogSaleInAccountingChange() throws ItemDoesNotExistException {
+    public void testLogSaleInAccountingChange() throws DoesNotExistException {
         Amount paidAmount = new Amount(29.9 * (1 + 0.06)); // 1 + vat multiplier, 6%, 0.06
         sale.addItemToBasket("abc123", 1);
         sale.calcTotal(1);
@@ -226,7 +226,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testRemoveBoughtItemsFromRegistry() throws ItemDoesNotExistException {
+    public void testRemoveBoughtItemsFromRegistry() throws DoesNotExistException {
         // Private class ignored! Tested in testFinishSale method above.
         // Implemented in FinishSale method.
     }

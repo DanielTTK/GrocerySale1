@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.kth.iv1350.sem3.integration.ItemDTO;
-import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
 import se.kth.iv1350.sem3.model.*;
 
@@ -36,9 +36,9 @@ public class Controller {
      * 
      * @param id       id of particular item to be scanned
      * @param quantity amount of same items scanned
-     * @throws ItemDoesNotExistException
+     * @throws DoesNotExistException
      */
-    public void scanItem(String id, int quantity) throws ItemDoesNotExistException {
+    public void scanItem(String id, int quantity) throws DoesNotExistException {
         sale.addItemToBasket(id, quantity);
     }
 
@@ -68,9 +68,9 @@ public class Controller {
      * finalization of sale. Called finishSale in the model.
      * 
      * @param paidAmount
-     * @throws ItemDoesNotExistException
+     * @throws DoesNotExistException
      */
-    public void pay(Amount paidAmount) throws ItemDoesNotExistException {
+    public void pay(Amount paidAmount) throws DoesNotExistException {
         sale.finishSale(paidAmount);
     }
 

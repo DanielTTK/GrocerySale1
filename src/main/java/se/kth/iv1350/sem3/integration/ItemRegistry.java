@@ -23,12 +23,12 @@ public class ItemRegistry {
      * specific identifier.
      * 
      * @param id id of product you want to get
-     * @throws ItemRegistryException     gets called when something is wrong
-     *                                   with database. Checked.
-     * @throws ItemDoesNotExistException throws when identifier is not in database.
-     *                                   Unchecked.
+     * @throws ItemRegistryException gets called when something is wrong
+     *                               with database. Checked.
+     * @throws DoesNotExistException throws when identifier is not in database.
+     *                               Unchecked.
      */
-    public ItemDTO returnItem(String id) throws ItemDoesNotExistException {
+    public ItemDTO returnItem(String id) throws DoesNotExistException {
         ItemDTO[] itemArray = getInventory();
         ItemDTO item = null;
 
@@ -60,10 +60,10 @@ public class ItemRegistry {
      * 
      * @param id
      * @param quantity
-     * @throws ItemDoesNotExistException
+     * @throws DoesNotExistException
      */
-    public void decreaseItemQuanityFromRegistry(String id, int quantity) throws ItemDoesNotExistException { // copied
-                                                                                                            // code?
+    public void decreaseItemQuanityFromRegistry(String id, int quantity) throws DoesNotExistException { // copied
+                                                                                                        // code?
         ItemDTO item = returnItem(id);
         int resultingQuantity = item.getQuantity() - quantity;
         Amount itemCostToDecrease = item.getCost().subtractAmt(item.getCost().multiplyAmt(quantity));
@@ -84,9 +84,9 @@ public class ItemRegistry {
      * something gets removed if it already doesn't when quantity is 0.
      * 
      * @param id
-     * @throws ItemDoesNotExistException
+     * @throws DoesNotExistException
      */
-    public void removeItemFromRegistry(String id) throws ItemDoesNotExistException { // make private?
+    public void removeItemFromRegistry(String id) throws DoesNotExistException { // make private?
         int indexOfItem = returnIndexOfItem(id);
         items.remove(indexOfItem);
     }
@@ -97,9 +97,9 @@ public class ItemRegistry {
      * 
      * @param id identifier of item
      * @return returns index of item
-     * @throws ItemDoesNotExistException
+     * @throws DoesNotExistException
      */
-    public int returnIndexOfItem(String id) throws ItemDoesNotExistException {
+    public int returnIndexOfItem(String id) throws DoesNotExistException {
         ItemDTO[] itemArray = getInventory();
         int index = -1;
 
@@ -110,7 +110,7 @@ public class ItemRegistry {
         }
 
         if (index == -1) {
-            throw new ItemDoesNotExistException(id);
+            throw new DoesNotExistException("No item with identifier: " + id);
         }
 
         return index;
@@ -123,9 +123,9 @@ public class ItemRegistry {
      * @param itemID Searched id
      * @throws DoesNotExistException
      */
-    private void checkIfItemExist(ItemDTO item, String itemID) throws ItemDoesNotExistException {
+    private void checkIfItemExist(ItemDTO item, String itemID) throws DoesNotExistException {
         if (item == null) {
-            throw new ItemDoesNotExistException(itemID);
+            throw new DoesNotExistException("No item with identifier: " + itemID);
         }
     }
 

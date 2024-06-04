@@ -5,7 +5,7 @@ import java.util.List;
 
 import se.kth.iv1350.sem3.controller.Controller;
 import se.kth.iv1350.sem3.integration.ItemDTO;
-import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.model.Amount;
 
 //import se.kth.iv1350.sem3.util.Logger;
@@ -38,7 +38,7 @@ public class View {
      * 
      * @throws DoesNotExistException exception if scanned item does not exist.
      */
-    public void runFakeExecution() throws ItemDoesNotExistException {
+    public void runFakeExecution() throws DoesNotExistException {
         contr.startSale();
         System.out.println("Sale has been started.");
 

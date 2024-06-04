@@ -40,7 +40,7 @@ public class LoggerTest {
     }
 
     @Test
-    void testLogException() throws IOException, ItemDoesNotExistException {
+    void testLogException() throws IOException, DoesNotExistException {
         try {
             SystemDelegator delegator = new SystemDelegator();
             Controller contr = new Controller(delegator);
@@ -52,7 +52,7 @@ public class LoggerTest {
             logger.logException(ex);
             String expectedString = "Critical database failure";
             assertTrue(fileContains(expectedString), "Wrong logger message!");
-        } catch (ItemDoesNotExistException ex) {
+        } catch (DoesNotExistException ex) {
 
         }
     }

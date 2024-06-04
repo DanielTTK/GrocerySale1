@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.kth.iv1350.sem3.integration.ItemDTO;
-import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.ItemRegistry;
 import se.kth.iv1350.sem3.integration.SaleRegistry;
 import se.kth.iv1350.sem3.integration.SaleDTO;
@@ -45,10 +45,10 @@ public class Sale {
      * @param id
      * @param quantity
      */
-    public void addItemToBasket(String id, int quantity) throws ItemDoesNotExistException { // Decide if exception
-                                                                                            // should keep propegating
-                                                                                            // upwards or if you want to
-                                                                                            // catch it here. Why?
+    public void addItemToBasket(String id, int quantity) throws DoesNotExistException { // Decide if exception
+                                                                                        // should keep propegating
+                                                                                        // upwards or if you want to
+                                                                                        // catch it here. Why?
         if (basket.size() == 0) {
             basket.add(itemSetQuantity(itemRegistry.returnItem(id), quantity));
             return;
@@ -73,9 +73,9 @@ public class Sale {
      * @return a copy of <code>item</code> but with <code>quantity</code> added
      *         quantity
      */
-    private ItemDTO itemAddedQuantity(ItemDTO item, int quantity) throws ItemDoesNotExistException { // should be in
-                                                                                                     // itemRegistry
-                                                                                                     // class?
+    private ItemDTO itemAddedQuantity(ItemDTO item, int quantity) throws DoesNotExistException { // should be in
+                                                                                                 // itemRegistry
+                                                                                                 // class?
         int resultingQuantity = (item.getQuantity() + quantity);
         Amount itemCostToAdd = (itemRegistry.returnItem(item.getID()).getCost().multiplyAmt(quantity));
 
@@ -92,7 +92,7 @@ public class Sale {
      * @return a copy of <code>item</code> but with <code>quantity</code> added
      *         quantity
      */
-    private ItemDTO itemSetQuantity(ItemDTO item, int quantity) throws ItemDoesNotExistException {
+    private ItemDTO itemSetQuantity(ItemDTO item, int quantity) throws DoesNotExistException {
         Amount itemCostToAdd = (itemRegistry.returnItem(item.getID()).getCost().multiplyAmt((quantity - 1)));
 
         ItemDTO newItem = new ItemDTO(item.getID(), item.getName(), item.getDescription(),
@@ -123,10 +123,10 @@ public class Sale {
      * Always to be done last in a sale,
      * cannot remove items after this for example.
      * 
-     * @throws ItemDoesNotExistException
+     * @throws DoesNotExistException
      * @returns change, amount the customer gets back.
      */
-    public void finishSale(Amount paidAmount) throws ItemDoesNotExistException {
+    public void finishSale(Amount paidAmount) throws DoesNotExistException {
         List<ItemDTO> currBasket = getBasket();
         this.paidAmount = paidAmount;
 
@@ -147,9 +147,9 @@ public class Sale {
      * Removes items that exist in basket array from database
      * 
      * @param currentBasket basket array, consists of items to be bought
-     * @throws ItemDoesNotExistException
+     * @throws DoesNotExistException
      */
-    private void removeBoughtItemsFromRegistry(List<ItemDTO> currentBasket) throws ItemDoesNotExistException {
+    private void removeBoughtItemsFromRegistry(List<ItemDTO> currentBasket) throws DoesNotExistException {
         for (int i = 0; i < currentBasket.size(); i++) {
             ItemDTO itemInstance = currentBasket.get(i);
             ItemDTO itemToSubtract = itemRegistry.returnItem(itemInstance.getID());

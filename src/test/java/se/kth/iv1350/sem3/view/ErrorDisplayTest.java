@@ -3,7 +3,7 @@ package se.kth.iv1350.sem3.view;
 import org.junit.jupiter.api.Test;
 
 import se.kth.iv1350.sem3.controller.Controller;
-import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
 //import se.kth.iv1350.sem3.view.ErrorDisplay;
 
@@ -54,9 +54,9 @@ public class ErrorDisplayTest {
             contr.startSale();
             contr.scanItem("rnd123", 1);
 
-            throw new ItemDoesNotExistException("rnd123");
+            throw new DoesNotExistException("rnd123");
 
-        } catch (ItemDoesNotExistException ex) {
+        } catch (DoesNotExistException ex) {
             String expectedString = "Cannot recognize identifier " + "rnd123" + ", since it does not exist.";
             assertTrue(ex.getMessage().equals(expectedString), "Wrong message to client!");
         }

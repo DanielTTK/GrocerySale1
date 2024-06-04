@@ -38,14 +38,14 @@ public class ItemRegistryTest {
     }
 
     @Test
-    public void testReturnItem() throws ItemDoesNotExistException {
+    public void testReturnItem() throws DoesNotExistException {
         ItemDTO item = itemRegistry.returnItem("abc123");
 
         assertTrue(item.getID() == "abc123", "Wrong item returned!");
     }
 
     @Test
-    public void testDecreaseItemQuanityFromRegistry() throws ItemDoesNotExistException {
+    public void testDecreaseItemQuanityFromRegistry() throws DoesNotExistException {
         itemRegistry.decreaseItemQuanityFromRegistry("abc123", 1);
 
         ItemDTO item1 = itemRegistry.getInventoryArrayList().get(0);
@@ -56,7 +56,7 @@ public class ItemRegistryTest {
     }
 
     @Test
-    public void testRemoveItemDueToQuanityDecreaseFromRegistry() throws ItemDoesNotExistException {
+    public void testRemoveItemDueToQuanityDecreaseFromRegistry() throws DoesNotExistException {
         itemRegistry.decreaseItemQuanityFromRegistry("def456", 1);
 
         assertTrue(itemRegistry.getInventoryArrayList().size() == 1,
@@ -65,7 +65,7 @@ public class ItemRegistryTest {
     }
 
     @Test
-    public void testRemoveItemFromRegistry() throws ItemDoesNotExistException {
+    public void testRemoveItemFromRegistry() throws DoesNotExistException {
         itemRegistry.removeItemFromRegistry("def456");
 
         assertTrue(itemRegistry.getInventoryArrayList().size() == 1, "Length is wrong, it is: " + itemRegistry
@@ -73,7 +73,7 @@ public class ItemRegistryTest {
     }
 
     @Test
-    public void testReturnIndexOfItem() throws ItemDoesNotExistException {
+    public void testReturnIndexOfItem() throws DoesNotExistException {
         int indexItem = itemRegistry.returnIndexOfItem("abc123");
 
         assertTrue(indexItem == 0,

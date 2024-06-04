@@ -3,7 +3,7 @@ package se.kth.iv1350.sem3.view;
 import org.junit.jupiter.api.Test;
 
 import se.kth.iv1350.sem3.controller.Controller;
-import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
 
 import java.io.ByteArrayOutputStream;
@@ -41,7 +41,7 @@ public class ViewTest {
     }
 
     @Test
-    void testRunFakeExecution() throws ItemDoesNotExistException {
+    void testRunFakeExecution() throws DoesNotExistException {
         instanceToTest.runFakeExecution();
         String printout = printoutBuffer.toString();
         System.out.println(printout);

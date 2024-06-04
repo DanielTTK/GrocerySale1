@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import se.kth.iv1350.sem3.integration.ItemDTO;
-import se.kth.iv1350.sem3.integration.ItemDoesNotExistException;
+import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
 
 public class RecieptTest {
@@ -24,7 +24,7 @@ public class RecieptTest {
     private String recieptString;
 
     @BeforeEach
-    public void renewSetUp() throws IOException, ItemDoesNotExistException {
+    public void renewSetUp() throws IOException, DoesNotExistException {
         delegator = new SystemDelegator();
         sale = new Sale(delegator);
         printoutBuffer = new ByteArrayOutputStream();
@@ -49,7 +49,7 @@ public class RecieptTest {
     }
 
     @Test
-    public void testCreateRecieptChange() throws ItemDoesNotExistException {
+    public void testCreateRecieptChange() throws DoesNotExistException {
         String expectedChangeInStringForm = sale.getPaidAmount().subtractAmt(sale.getTotalCost()).mathFloor()
                 .toString();
 
@@ -57,7 +57,7 @@ public class RecieptTest {
     }
 
     @Test
-    public void testCreateRecieptItemCost() throws ItemDoesNotExistException {
+    public void testCreateRecieptItemCost() throws DoesNotExistException {
         ItemDTO item = sale.getBasket().get(0);
         String expectedItemCostString = item.getCost().toString();
 
@@ -65,28 +65,28 @@ public class RecieptTest {
     }
 
     @Test
-    public void testCreateRecieptTotalCost() throws ItemDoesNotExistException {
+    public void testCreateRecieptTotalCost() throws DoesNotExistException {
         String expectedTotalCostString = sale.getTotalCost().mathFloor().toString();
 
         assertTrue(recieptString.contains(expectedTotalCostString), "Invalid total cost in reciept!");
     }
 
     @Test
-    public void testCreateRecieptTotalVAT() throws ItemDoesNotExistException {
+    public void testCreateRecieptTotalVAT() throws DoesNotExistException {
         String expectedTotalVATString = sale.getTotalVAT().mathFloor().toString();
 
         assertTrue(recieptString.contains(expectedTotalVATString), "Invalid total vat in reciept!");
     }
 
     @Test
-    public void testCreateRecieptPaidAmount() throws ItemDoesNotExistException {
+    public void testCreateRecieptPaidAmount() throws DoesNotExistException {
         String expectedPaidAmountString = sale.getPaidAmount().toString();
 
         assertTrue(recieptString.contains(expectedPaidAmountString), "Invalid paid amount in reciept!");
     }
 
     @Test
-    public void testCreateRecieptQuantity() throws ItemDoesNotExistException {
+    public void testCreateRecieptQuantity() throws DoesNotExistException {
         String expectedQuantityString = "1";
 
         assertTrue(recieptString.contains(expectedQuantityString), "Invalid quantity in reciept!");
