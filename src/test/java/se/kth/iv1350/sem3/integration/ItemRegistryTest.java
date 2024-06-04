@@ -33,6 +33,11 @@ public class ItemRegistryTest {
     }
 
     @Test
+    public void testItemRegistry() {
+        assertTrue(itemRegistry.getInventoryArrayList() != null, "No items were added in inventory list!");
+    }
+
+    @Test
     public void testReturnItem() throws ItemDoesNotExistException {
         ItemDTO item = itemRegistry.returnItem("abc123");
 
