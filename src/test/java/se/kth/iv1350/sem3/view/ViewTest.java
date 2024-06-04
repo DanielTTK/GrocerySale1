@@ -3,6 +3,7 @@ package se.kth.iv1350.sem3.view;
 import org.junit.jupiter.api.Test;
 
 import se.kth.iv1350.sem3.controller.Controller;
+import se.kth.iv1350.sem3.controller.GeneralException;
 import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
 
@@ -41,7 +42,7 @@ public class ViewTest {
     }
 
     @Test
-    void testRunFakeExecution() throws DoesNotExistException {
+    void testRunFakeExecution() throws DoesNotExistException, GeneralException {
         instanceToTest.runFakeExecution();
         String printout = printoutBuffer.toString();
         System.out.println(printout);

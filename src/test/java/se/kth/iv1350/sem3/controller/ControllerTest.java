@@ -47,7 +47,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testIdentifierScanItem() throws DoesNotExistException {
+    public void testIdentifierScanItem() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         String expectedResult = "abc123";
         String result = contr.getBasket().get(0).getID();
@@ -55,7 +55,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testQuantityScanItem() throws DoesNotExistException {
+    public void testQuantityScanItem() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         int expectedResult = 1;
         int result = contr.getBasket().get(0).getQuantity();
@@ -63,7 +63,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testCalcTotal() throws DoesNotExistException {
+    public void testCalcTotal() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
         Amount basketTotalCost = contr.getTotalCost();
@@ -74,7 +74,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testPayChange() throws DoesNotExistException {
+    public void testPayChange() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
 
@@ -87,7 +87,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testPayInventoryItemQuantityDecrease() throws DoesNotExistException {
+    public void testPayInventoryItemQuantityDecrease() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
 
@@ -101,7 +101,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testPayInventoryItemRemovalByQuantity() throws DoesNotExistException {
+    public void testPayInventoryItemRemovalByQuantity() throws DoesNotExistException, GeneralException {
         contr.scanItem("def456", 1);
         contr.calcTotal(1);
 
@@ -115,7 +115,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testCreateRecieptChange() throws DoesNotExistException {
+    public void testCreateRecieptChange() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
 
@@ -129,7 +129,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testCreateRecieptItemCost() throws DoesNotExistException {
+    public void testCreateRecieptItemCost() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
 
@@ -144,7 +144,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testCreateRecieptTotalCost() throws DoesNotExistException {
+    public void testCreateRecieptTotalCost() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
 
@@ -158,7 +158,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testCreateRecieptTotalVAT() throws DoesNotExistException {
+    public void testCreateRecieptTotalVAT() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
 
@@ -172,7 +172,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testCreateRecieptPaidAmount() throws DoesNotExistException {
+    public void testCreateRecieptPaidAmount() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
 
@@ -185,7 +185,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testCreateRecieptQuantity() throws DoesNotExistException {
+    public void testCreateRecieptQuantity() throws DoesNotExistException, GeneralException {
         contr.scanItem("abc123", 1);
         contr.calcTotal(1);
 
@@ -199,7 +199,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testLogSaleInAccountingListSize() throws DoesNotExistException {
+    public void testLogSaleInAccountingListSize() throws DoesNotExistException, GeneralException {
         SaleRegistry accounting = delegator.getSaleRegistry();
 
         contr.scanItem("abc123", 1);
@@ -216,7 +216,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testLogSaleInAccountingSaleTime() throws DoesNotExistException {
+    public void testLogSaleInAccountingSaleTime() throws DoesNotExistException, GeneralException {
         SaleRegistry accounting = delegator.getSaleRegistry();
 
         contr.scanItem("abc123", 1);
@@ -236,7 +236,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testLogSaleInAccountingSaleBasket() throws DoesNotExistException {
+    public void testLogSaleInAccountingSaleBasket() throws DoesNotExistException, GeneralException {
         SaleRegistry accounting = delegator.getSaleRegistry();
 
         contr.scanItem("abc123", 1);
@@ -256,7 +256,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testLogSaleInAccountingSaleTotalCost() throws DoesNotExistException {
+    public void testLogSaleInAccountingSaleTotalCost() throws DoesNotExistException, GeneralException {
         SaleRegistry accounting = delegator.getSaleRegistry();
 
         contr.scanItem("abc123", 1);
@@ -277,7 +277,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testLogSaleInAccountingSaleTotalVAT() throws DoesNotExistException {
+    public void testLogSaleInAccountingSaleTotalVAT() throws DoesNotExistException, GeneralException {
         SaleRegistry accounting = delegator.getSaleRegistry();
 
         contr.scanItem("abc123", 1);
@@ -297,7 +297,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testLogSaleInAccountingSalePaidAmount() throws DoesNotExistException {
+    public void testLogSaleInAccountingSalePaidAmount() throws DoesNotExistException, GeneralException {
         SaleRegistry accounting = delegator.getSaleRegistry();
 
         contr.scanItem("abc123", 1);
@@ -317,7 +317,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testLogSaleInAccountingSaleChange() throws DoesNotExistException {
+    public void testLogSaleInAccountingSaleChange() throws DoesNotExistException, GeneralException {
         SaleRegistry accounting = delegator.getSaleRegistry();
 
         contr.scanItem("abc123", 1);

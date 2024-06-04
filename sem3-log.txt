@@ -1,1 +1,3 @@
 
+2024-06-04 20:39:32 | Exception: Critical database failure
+2024-06-04 20:39:32 | Exception: Something went wrong when scanning item.

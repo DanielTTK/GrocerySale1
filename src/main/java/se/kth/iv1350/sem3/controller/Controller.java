@@ -1,12 +1,15 @@
 package se.kth.iv1350.sem3.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import se.kth.iv1350.sem3.integration.ItemDTO;
+import se.kth.iv1350.sem3.integration.ItemRegistryException;
 import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
 import se.kth.iv1350.sem3.model.*;
+import se.kth.iv1350.sem3.util.Logger;
 
 /**
  * Only controller for this project. All calls to model pass through this class.
@@ -16,9 +19,11 @@ public class Controller {
     private List<SaleObserver> saleObservers = new ArrayList<>();
     private Sale sale;
     private Reciept reciept;
+    private Logger logger;
 
-    public Controller(SystemDelegator delegator) {
+    public Controller(SystemDelegator delegator) throws IOException {
         this.delegator = delegator;
+        this.logger = new Logger();
     }
 
     /**
@@ -38,8 +43,13 @@ public class Controller {
      * @param quantity amount of same items scanned
      * @throws DoesNotExistException
      */
-    public void scanItem(String id, int quantity) throws DoesNotExistException {
-        sale.addItemToBasket(id, quantity);
+    public void scanItem(String id, int quantity) throws DoesNotExistException, GeneralException {
+        try {
+            sale.addItemToBasket(id, quantity);
+        } catch (ItemRegistryException databaseExc) {
+            logger.logException(databaseExc);
+            throw new GeneralException("Something went wrong when scanning item.", databaseExc);
+        }
     }
 
     /**
@@ -70,8 +80,13 @@ public class Controller {
      * @param paidAmount
      * @throws DoesNotExistException
      */
-    public void pay(Amount paidAmount) throws DoesNotExistException {
-        sale.finishSale(paidAmount);
+    public void pay(Amount paidAmount) throws DoesNotExistException, GeneralException {
+        try {
+            sale.finishSale(paidAmount);
+        } catch (ItemRegistryException databaseExc) {
+            logger.logException(databaseExc);
+            throw new GeneralException("Something went wrong when attempting to finish sale.", databaseExc);
+        }
     }
 
     /**

@@ -44,6 +44,19 @@ public class ItemRegistry {
     }
 
     /**
+     * Checks if item exists.
+     * 
+     * @param item   Item object to check
+     * @param itemID Searched id
+     * @throws DoesNotExistException
+     */
+    private void checkIfItemExist(ItemDTO item, String itemID) throws DoesNotExistException {
+        if (item == null) {
+            throw new DoesNotExistException(itemID);
+        }
+    }
+
+    /**
      * Creates an database error deliberately by hardcoding a special id to throw
      * this.
      * 
@@ -110,23 +123,10 @@ public class ItemRegistry {
         }
 
         if (index == -1) {
-            throw new DoesNotExistException("No item with identifier: " + id);
+            throw new DoesNotExistException(id);
         }
 
         return index;
-    }
-
-    /**
-     * Checks if item exists.
-     * 
-     * @param item   Item object to check
-     * @param itemID Searched id
-     * @throws DoesNotExistException
-     */
-    private void checkIfItemExist(ItemDTO item, String itemID) throws DoesNotExistException {
-        if (item == null) {
-            throw new DoesNotExistException("No item with identifier: " + itemID);
-        }
     }
 
     /**

@@ -3,11 +3,12 @@ package se.kth.iv1350.sem3.view;
 import org.junit.jupiter.api.Test;
 
 import se.kth.iv1350.sem3.controller.Controller;
+import se.kth.iv1350.sem3.controller.GeneralException;
 import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.integration.SystemDelegator;
-//import se.kth.iv1350.sem3.view.ErrorDisplay;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.AfterEach;
@@ -45,7 +46,7 @@ public class ErrorDisplayTest {
     }
 
     @Test
-    void showInvalidID() {
+    void showInvalidID() throws GeneralException, IOException {
         try {
             SystemDelegator delegator = new SystemDelegator();
             Controller contr = new Controller(delegator);

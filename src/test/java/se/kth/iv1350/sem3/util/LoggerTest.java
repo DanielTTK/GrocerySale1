@@ -3,6 +3,7 @@ package se.kth.iv1350.sem3.util;
 //import se.kth.iv1350.sem3.util.Logger;
 import se.kth.iv1350.sem3.integration.*;
 import se.kth.iv1350.sem3.controller.Controller;
+import se.kth.iv1350.sem3.controller.GeneralException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -36,11 +37,12 @@ public class LoggerTest {
     @AfterEach
     public void tearDown() {
         printoutBuffer = null;
+        logger = null;
         System.setOut(originalSysOut);
     }
 
     @Test
-    void testLogException() throws IOException, DoesNotExistException {
+    void testLogException() throws IOException, DoesNotExistException, GeneralException {
         try {
             SystemDelegator delegator = new SystemDelegator();
             Controller contr = new Controller(delegator);

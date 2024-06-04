@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 /**
  * Log class, responsible for the log.
@@ -32,8 +31,9 @@ public class Logger {
     }
 
     private String time() {
-        LocalDateTime time = LocalDateTime.now();
-        DateTimeFormatter format = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
-        return time.format(format);
+        LocalDateTime saleTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        return formatter.format(saleTime);
     }
 }
