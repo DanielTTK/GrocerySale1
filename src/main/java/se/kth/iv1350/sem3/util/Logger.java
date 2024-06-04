@@ -14,22 +14,41 @@ public class Logger {
     private PrintWriter logPrint;
 
     /**
+     * Initiates the logger.
      * 
-     * @throws IOException
      */
-    public Logger() throws IOException {
-        logPrint = new PrintWriter(new FileWriter(LOG_FILE_NAME, true), true);
+    public Logger() {
+        try {
+            logPrint = new PrintWriter(new FileWriter(LOG_FILE_NAME, true), true);
+        } catch (IOException e) {
+            System.err.println("ERR: Cannot log!");
+        }
     }
 
+    /**
+     * Logs a particular exception.
+     * 
+     * @param ex the exception
+     */
     public void logException(Exception ex) {
         logPrint.println(time() + " | Exception: " + ex.getMessage());
         ex.printStackTrace();
     }
 
+    /**
+     * Logs a message, string.
+     * 
+     * @param msg the string
+     */
     public void logMessage(String msg) {
         logPrint.println(msg);
     }
 
+    /**
+     * Creates a time in the format: yyyy-MM-dd HH:mm:ss
+     * 
+     * @return returns time in string format
+     */
     private String time() {
         LocalDateTime saleTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

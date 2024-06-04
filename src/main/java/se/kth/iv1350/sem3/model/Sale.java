@@ -26,7 +26,7 @@ public class Sale {
     private Amount paidAmount;
     private Amount change;
 
-    // private List<SaleObserver> saleObservers = new ArrayList<>();
+    private List<SaleObserver> saleObservers = new ArrayList<>();
     private List<ItemDTO> basket = new ArrayList<>();
 
     /**
@@ -135,12 +135,24 @@ public class Sale {
     }
 
     /**
-     * Logs details about sale instance in external database.
+     * Logs details about sale instance in relevant places like databases.
      */
     public void logSaleInAccounting() {
         SaleDTO saleInstance = new SaleDTO(getSaleTime(), getBasket(), getTotalCost(),
                 getTotalVAT(), getPaidAmount(), getChange());
         saleRegistry.saveSale(saleInstance);
+        notifyObservers(saleInstance);
+    }
+
+    /**
+     * Means to notifiy observers of a sale happening.
+     * 
+     * @param saleInstance
+     */
+    private void notifyObservers(SaleDTO saleInstance) {
+        for (SaleObserver obs : saleObservers) {
+            obs.finishedSale(saleInstance);
+        }
     }
 
     /**
@@ -220,20 +232,23 @@ public class Sale {
         return formatter.format(saleTime);
     }
 
-    /*
-     * private void notifyObservers(ItemDTO soldItem) {
-     * for (SaleObserver obs : saleObservers) {
-     * obs.finishedSale(soldItem);
-     * }
-     * }
+    /**
+     * Adds a sale observers
      * 
-     * public void notifySpecificSaleObserver(SaleObserver obs) { // add javadocs to
-     * these
-     * saleObservers.add(obs);
-     * }
-     * 
-     * public void notifyAllSaleObservers(List<SaleObserver> observers) {
-     * saleObservers.addAll(observers);
-     * }
+     * @param obs
      */
+    public void addSaleObserver(SaleObserver obs) {
+        saleObservers.add(obs);
+    }
+
+    /**
+     * Notifies all the observers by reregistring them when they need to be
+     * notified.
+     * 
+     * @param observers
+     */
+    public void addAllSaleObservers(List<SaleObserver> observers) {
+        saleObservers.addAll(observers);
+    }
+
 }

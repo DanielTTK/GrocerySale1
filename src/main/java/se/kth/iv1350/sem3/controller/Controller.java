@@ -83,6 +83,7 @@ public class Controller {
     public void pay(Amount paidAmount) throws DoesNotExistException, GeneralException {
         try {
             sale.finishSale(paidAmount);
+            sale.addAllSaleObservers(saleObservers);
         } catch (ItemRegistryException databaseExc) {
             logger.logException(databaseExc);
             throw new GeneralException("Something went wrong when attempting to finish sale.", databaseExc);
@@ -150,11 +151,11 @@ public class Controller {
     }
 
     /**
-     * Notifies this specific observer, param
+     * Registers an observer to be used
      * 
      * @param observer
      */
-    public void notifySpecificObserver(SaleObserver observer) {
+    public void addSaleObserver(SaleObserver observer) {
         saleObservers.add(observer);
     }
 }

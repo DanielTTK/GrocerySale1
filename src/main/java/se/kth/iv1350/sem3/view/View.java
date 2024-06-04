@@ -29,6 +29,7 @@ public class View {
      */
     public View(Controller contr) throws IOException { // good example of constructor that doesnt need test
         this.contr = contr;
+        contr.addSaleObserver(new TotalRevenueView());
         this.logger = new Logger();
     }
 

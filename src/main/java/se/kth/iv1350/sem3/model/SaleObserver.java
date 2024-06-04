@@ -1,6 +1,6 @@
 package se.kth.iv1350.sem3.model;
 
-import se.kth.iv1350.sem3.integration.ItemDTO;
+import se.kth.iv1350.sem3.integration.SaleDTO;
 
 /**
  * 
@@ -11,5 +11,5 @@ public interface SaleObserver {
      * 
      * @param soldItem The item that was sold.
      */
-    void finishedSale(ItemDTO soldItem);
+    void finishedSale(SaleDTO finishedSale);
 }
