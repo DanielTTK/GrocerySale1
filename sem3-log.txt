@@ -3,3 +3,7 @@
 2024-06-04 22:04:36 | Exception: Critical database failure
 2024-06-04 22:24:58 | Exception: Critical database failure
 2024-06-04 22:24:58 | Exception: Something went wrong when scanning item.
+2024-06-05 19:54:32 | Exception: Critical database failure
+2024-06-05 19:54:32 | Exception: Something went wrong when scanning item.
+2024-06-05 19:56:31 | Exception: Critical database failure
+2024-06-05 19:56:31 | Exception: Something went wrong when scanning item.
