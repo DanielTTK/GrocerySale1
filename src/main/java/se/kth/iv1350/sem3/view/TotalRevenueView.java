@@ -1,27 +1,15 @@
 package se.kth.iv1350.sem3.view;
 
-import se.kth.iv1350.sem3.model.Amount;
-import se.kth.iv1350.sem3.model.SaleObserver;
-
-import se.kth.iv1350.sem3.integration.SaleDTO;
-
 /**
- * shows total income recieved through observers.
+ * shows total income recieved through observers. Prints to client
  */
-public class TotalRevenueView implements SaleObserver {
-    private Amount totalRevenue;
-
-    public TotalRevenueView() {
-        totalRevenue = new Amount(0);
+public class TotalRevenueView extends TotalRevenueTemplate {
+    protected void printIncome() {
+        System.out.println("Updated total income since program start: " + totalRevenue + " SEK (incl VAT)");
     }
 
     @Override
-    public void finishedSale(SaleDTO finishedSale) {
-        totalRevenue = totalRevenue.addAmt(finishedSale.getSaleTotalCost().mathFloor());
-        printIncome();
-    }
-
-    private void printIncome() {
-        System.out.println("Updated total income since program start: " + totalRevenue + " SEK (incl VAT)");
+    protected void reactToError(Exception e) {
+        System.err.println("ERROR: Cannot display income to console!");
     }
 }
