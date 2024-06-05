@@ -10,8 +10,6 @@ import se.kth.iv1350.sem3.integration.DoesNotExistException;
 import se.kth.iv1350.sem3.model.Amount;
 import se.kth.iv1350.sem3.util.Logger;
 
-//import se.kth.iv1350.sem3.util.Logger;
-
 /**
  * This is a placeholder for the real view. Contains hardcoded execution,
  * calling methods inside controller.
@@ -20,6 +18,9 @@ public class View {
     private Controller contr;
     private Logger logger;
     private ErrorDisplay errorDisplay = new ErrorDisplay();
+
+    private RandomImplementation randomImplementation = new RandomImplementation();
+    private RandomComposition randomComposition = new RandomComposition();
 
     /**
      * Creates new instance.
@@ -72,6 +73,12 @@ public class View {
         } catch (Exception exception) {
             writeToLogAndUI("Failed to scan items...", exception);
         }
+
+        System.out.println("\n\nTesting if random implementation works, task 2...");
+        System.out.println(randomImplementation.nextInt(50));
+
+        System.out.println("\nTesting if random composition works, task 2...");
+        System.out.println(randomComposition.nextInt(50));
     }
 
     /**
