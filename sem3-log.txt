@@ -106,3 +106,95 @@
 2024-06-05 21:21:12 | Exception: Something went wrong when scanning item.
 2024-06-05 21:21:12 | Exception: Critical database failure
 2024-06-05 21:21:12 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:09 | Exception: Critical database failure
+2024-06-05 21:25:09 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:09 | Exception: Critical database failure
+2024-06-05 21:25:09 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:09 | Exception: Critical database failure
+2024-06-05 21:25:09 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:09 | Exception: Critical database failure
+2024-06-05 21:25:09 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:09 | Exception: Critical database failure
+2024-06-05 21:25:09 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:09 | Exception: Critical database failure
+2024-06-05 21:25:09 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:09 | Exception: Critical database failure
+2024-06-05 21:25:09 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:21 | Exception: Critical database failure
+2024-06-05 21:25:21 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:21 | Exception: Critical database failure
+2024-06-05 21:25:21 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:21 | Exception: Critical database failure
+2024-06-05 21:25:21 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:21 | Exception: Critical database failure
+2024-06-05 21:25:21 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:21 | Exception: Critical database failure
+2024-06-05 21:25:21 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:21 | Exception: Critical database failure
+2024-06-05 21:25:21 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:21 | Exception: Critical database failure
+2024-06-05 21:25:21 | Exception: Something went wrong when scanning item.
+2024-06-05 21:25:29 | Exception: Critical database failure
+2024-06-05 21:25:29 | Exception: Something went wrong when scanning item.
+2024-06-05 21:28:54 | Exception: Critical database failure
+2024-06-05 21:28:54 | Exception: Something went wrong when scanning item.
+2024-06-05 21:28:54 | Exception: Critical database failure
+2024-06-05 21:28:54 | Exception: Something went wrong when scanning item.
+2024-06-05 21:28:54 | Exception: Critical database failure
+2024-06-05 21:28:54 | Exception: Something went wrong when scanning item.
+2024-06-05 21:28:54 | Exception: Critical database failure
+2024-06-05 21:28:54 | Exception: Something went wrong when scanning item.
+2024-06-05 21:28:54 | Exception: Critical database failure
+2024-06-05 21:28:54 | Exception: Something went wrong when scanning item.
+2024-06-05 21:28:54 | Exception: Critical database failure
+2024-06-05 21:28:54 | Exception: Something went wrong when scanning item.
+2024-06-05 21:28:54 | Exception: Critical database failure
+2024-06-05 21:28:54 | Exception: Something went wrong when scanning item.
+2024-06-05 21:29:06 | Exception: Critical database failure
+2024-06-05 21:29:06 | Exception: Something went wrong when scanning item.
+2024-06-05 21:29:11 | Exception: Critical database failure
+2024-06-05 21:29:11 | Exception: Something went wrong when scanning item.
+2024-06-05 21:29:11 | Exception: Critical database failure
+2024-06-05 21:29:11 | Exception: Something went wrong when scanning item.
+2024-06-05 21:29:11 | Exception: Critical database failure
+2024-06-05 21:29:11 | Exception: Something went wrong when scanning item.
+2024-06-05 21:29:11 | Exception: Critical database failure
+2024-06-05 21:29:11 | Exception: Something went wrong when scanning item.
+2024-06-05 21:29:11 | Exception: Critical database failure
+2024-06-05 21:29:11 | Exception: Something went wrong when scanning item.
+2024-06-05 21:29:11 | Exception: Critical database failure
+2024-06-05 21:29:11 | Exception: Something went wrong when scanning item.
+2024-06-05 21:29:11 | Exception: Critical database failure
+2024-06-05 21:29:11 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:25 | Exception: Critical database failure
+2024-06-05 21:30:25 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:25 | Exception: Critical database failure
+2024-06-05 21:30:25 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:25 | Exception: Critical database failure
+2024-06-05 21:30:25 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:25 | Exception: Critical database failure
+2024-06-05 21:30:25 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:25 | Exception: Critical database failure
+2024-06-05 21:30:25 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:25 | Exception: Critical database failure
+2024-06-05 21:30:25 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:25 | Exception: Critical database failure
+2024-06-05 21:30:25 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:25 | Exception: Critical database failure
+2024-06-05 21:30:25 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:55 | Exception: Critical database failure
+2024-06-05 21:30:55 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:55 | Exception: Critical database failure
+2024-06-05 21:30:55 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:55 | Exception: Critical database failure
+2024-06-05 21:30:55 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:55 | Exception: Critical database failure
+2024-06-05 21:30:55 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:55 | Exception: Critical database failure
+2024-06-05 21:30:55 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:55 | Exception: Critical database failure
+2024-06-05 21:30:55 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:55 | Exception: Critical database failure
+2024-06-05 21:30:55 | Exception: Something went wrong when scanning item.
+2024-06-05 21:30:55 | Exception: Critical database failure
+2024-06-05 21:30:55 | Exception: Something went wrong when scanning item.

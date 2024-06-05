@@ -49,46 +49,46 @@ public class MainTest {
     }
 
     @Test
-    public void testViewChange() {
+    public void testMainChange() {
         String expectedChangeInStringForm = contr.getPaidAmount().subtractAmt(contr.getTotalCost()).mathFloor()
                 .toString();
 
-        assertTrue(printoutBuffer.toString().contains(expectedChangeInStringForm), "Invalid change in view output!");
+        assertTrue(printoutBuffer.toString().contains(expectedChangeInStringForm), "Invalid change in Main output!");
     }
 
     @Test
-    public void testViewItemCost() {
+    public void testMainItemCost() {
         ItemDTO item = contr.getBasket().get(0);
         String expectedItemCostString = item.getCost().toString();
 
-        assertTrue(printoutBuffer.toString().contains(expectedItemCostString), "Invalid item cost in view output!");
+        assertTrue(printoutBuffer.toString().contains(expectedItemCostString), "Invalid item cost in Main output!");
     }
 
     @Test
-    public void testViewTotalCost() {
+    public void testMainTotalCost() {
         String expectedTotalCostString = contr.getTotalCost().mathFloor().toString();
 
-        assertTrue(printoutBuffer.toString().contains(expectedTotalCostString), "Invalid total cost in view output!");
+        assertTrue(printoutBuffer.toString().contains(expectedTotalCostString), "Invalid total cost in Main output!");
     }
 
     @Test
-    public void testViewTotalVAT() {
+    public void testMainTotalVAT() {
         String expectedTotalVATString = contr.getTotalVAT().mathFloor().toString();
 
-        assertTrue(printoutBuffer.toString().contains(expectedTotalVATString), "Invalid total vat in view output!");
+        assertTrue(printoutBuffer.toString().contains(expectedTotalVATString), "Invalid total vat in Main output!");
     }
 
     @Test
-    public void testViewPaidAmount() {
+    public void testMainPaidAmount() {
         String expectedPaidAmountString = contr.getPaidAmount().toString();
 
-        assertTrue(printoutBuffer.toString().contains(expectedPaidAmountString), "Invalid paid amount in view output!");
+        assertTrue(printoutBuffer.toString().contains(expectedPaidAmountString), "Invalid paid amount in Main output!");
     }
 
     @Test
-    public void testViewQuantity() {
+    public void testMainQuantity() {
         String expectedQuantityString = "Add 1";
 
-        assertTrue(printoutBuffer.toString().contains(expectedQuantityString), "Invalid quantity in view output!");
+        assertTrue(printoutBuffer.toString().contains(expectedQuantityString), "Invalid quantity in Main output!");
     }
 }

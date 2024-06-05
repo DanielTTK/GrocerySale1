@@ -52,8 +52,9 @@ public class ViewTest {
 
     @Test
     public void testViewChange() {
-        String expectedChangeInStringForm = contr.getPaidAmount().subtractAmt(contr.getTotalCost()).mathFloor()
-                .toString();
+        String expectedChangeInStringForm = "Change to give the customer: "
+                + contr.getPaidAmount().subtractAmt(contr.getTotalCost()).mathFloor()
+                        .toString();
 
         assertTrue(printoutBuffer.toString().contains(expectedChangeInStringForm), "Invalid change in view output!");
     }
@@ -68,21 +69,21 @@ public class ViewTest {
 
     @Test
     public void testViewTotalCost() {
-        String expectedTotalCostString = contr.getTotalCost().mathFloor().toString();
+        String expectedTotalCostString = "Total: " + contr.getTotalCost().mathFloor().toString() + " SEK";
 
         assertTrue(printoutBuffer.toString().contains(expectedTotalCostString), "Invalid total cost in view output!");
     }
 
     @Test
     public void testViewTotalVAT() {
-        String expectedTotalVATString = contr.getTotalVAT().mathFloor().toString();
+        String expectedTotalVATString = "VAT: " + contr.getTotalVAT().mathFloor().toString();
 
         assertTrue(printoutBuffer.toString().contains(expectedTotalVATString), "Invalid total vat in view output!");
     }
 
     @Test
     public void testViewPaidAmount() {
-        String expectedPaidAmountString = contr.getPaidAmount().toString();
+        String expectedPaidAmountString = "Payment: " + contr.getPaidAmount().toString();
 
         assertTrue(printoutBuffer.toString().contains(expectedPaidAmountString), "Invalid paid amount in view output!");
     }
