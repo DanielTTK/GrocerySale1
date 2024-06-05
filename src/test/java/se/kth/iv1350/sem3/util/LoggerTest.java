@@ -50,7 +50,7 @@ public class LoggerTest {
             String expectedString = "Critical database failure";
             assertTrue(fileContains(expectedString), "Wrong logger message!");
         } catch (DoesNotExistException ex) {
-
+            fail("Wrong exception catched!");
         }
     }
 
