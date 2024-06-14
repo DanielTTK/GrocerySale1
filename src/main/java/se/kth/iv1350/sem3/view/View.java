@@ -70,8 +70,9 @@ public class View {
 
         } catch (DoesNotExistException exception) {
             errorDisplay.writeErrorMessage("An item you attempted to order does NOT exist!");
+            writeToLogAndUI("Failed to scan item... Item does not exist!", exception);
         } catch (Exception exception) {
-            writeToLogAndUI("Failed to scan items...", exception);
+            writeToLogAndUI("Failed to scan item...", exception);
         }
 
         System.out.println("\n\nTesting if random implementation works, task 2...");
@@ -101,7 +102,7 @@ public class View {
         } catch (GeneralException exception) {
             writeToLogAndUI("Expected exception thrown, program works.", exception);
         } catch (DoesNotExistException wrongexc) {
-            errorDisplay.writeErrorMessage("Completely wrong exception thrown...");
+            errorDisplay.writeErrorMessage("Completely wrong exception thrown... failed test");
         }
     }
 

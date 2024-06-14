@@ -51,6 +51,51 @@ public class ViewTest {
     }
 
     @Test
+    void testRunFakeExecDoesNotExistException() {
+        String printout = printoutBuffer.toString();
+        System.out.println(printout);
+        String unexpectedOutput = "Failed to scan item";
+        assertFalse(printout.contains(unexpectedOutput),
+                "A unit test failed outside of 'tryToFail' method! Unintended failure.");
+    }
+
+    @Test
+    void testTryToFailDoesNotExistException() {
+        String printout = printoutBuffer.toString();
+        System.out.println(printout);
+        String unexpectedOutput = "Managed to scan an item that does not exist!";
+        assertFalse(printout.contains(unexpectedOutput),
+                "Supposed unexisting identifier was scanned without error.");
+    }
+
+    @Test
+    void testTryToFailDoesNotExistExceptionWrongException() {
+        String printout = printoutBuffer.toString();
+        System.out.println(printout);
+        String unexpectedOutput = "Unexpected exception, failed test";
+        assertFalse(printout.contains(unexpectedOutput),
+                "GeneralException when DoesNotExistException was expected.");
+    }
+
+    @Test
+    void testTryToFailSystemDatabaseException() {
+        String printout = printoutBuffer.toString();
+        System.out.println(printout);
+        String expectedOutput = "Expected exception thrown, program works.";
+        assertTrue(printout.contains(expectedOutput),
+                "A unit test failed outside of 'tryToFail' method! Unintended failure.");
+    }
+
+    @Test
+    void testTryToFailSystemDatabaseExceptionWrongException() {
+        String printout = printoutBuffer.toString();
+        System.out.println(printout);
+        String unexpectedOutput = "Completely wrong exception thrown... failed test";
+        assertFalse(printout.contains(unexpectedOutput),
+                "DoesNotExistException when GeneralException was expected.");
+    }
+
+    @Test
     public void testViewChange() {
         String expectedChangeInStringForm = "Change to give the customer: "
                 + contr.getPaidAmount().subtractAmt(contr.getTotalCost()).mathFloor()
