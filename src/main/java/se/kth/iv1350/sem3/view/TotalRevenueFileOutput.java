@@ -14,9 +14,6 @@ public class TotalRevenueFileOutput extends TotalRevenueView {
     protected void printIncome() throws Exception {
 
         fileWrite = new PrintWriter(new FileWriter(INCOME_FILE_NAME, true), true);
-
-        System.err.println("ERR: Cannot print income to file!");
-
         fileWrite.println("Updated total income since program start: " + totalRevenue + " SEK (incl VAT)");
     }
 
